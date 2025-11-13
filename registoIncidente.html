@@ -1,15 +1,145 @@
-<div style="width: 975px; height: 657px; position: relative; background: #E8F8E5; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); overflow: hidden">
-  <div style="width: 506px; height: 64px; left: 238px; top: 36px; position: absolute; background: rgba(82, 154, 96, 0.61); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px rgba(0, 0, 0, 0.20) solid"></div>
-  <div style="width: 309px; height: 31px; left: 336px; top: 52px; position: absolute; text-align: center; color: #03320C; font-size: 24px; font-family: Roboto; font-weight: 600; word-wrap: break-word">Registo de Incidente</div>
-  <div style="width: 491px; height: 468px; left: 246px; top: 117px; position: absolute; background: white; border-radius: 20px"></div>
-  <div style="width: 104px; height: 20px; left: 336px; top: 428px; position: absolute; text-align: center; color: #529A60; font-size: 16px; font-family: Roboto; font-weight: 600; word-wrap: break-word">Descrição</div>
-  <div style="width: 320px; height: 100px; left: 335px; top: 448px; position: absolute; background: rgba(225, 225, 226, 0.69); border-radius: 20px"></div>
-  <div style="width: 320px; height: 50px; left: 335px; top: 356px; position: absolute; background: rgba(225, 225, 226, 0.69); border-radius: 20px"></div>
-  <div style="width: 320px; height: 50px; left: 335px; top: 260px; position: absolute; background: rgba(225, 225, 226, 0.69); border-radius: 20px"></div>
-  <div style="width: 129px; height: 20px; left: 348px; top: 336px; position: absolute; text-align: center; color: #529A60; font-size: 16px; font-family: Roboto; font-weight: 600; word-wrap: break-word">Tipo de incidente</div>
-  <div style="width: 81px; height: 20px; left: 331px; top: 240px; position: absolute; text-align: center; color: #529A60; font-size: 16px; font-family: Roboto; font-weight: 600; word-wrap: break-word">Data</div>
-  <div style="width: 320px; height: 50px; left: 335px; top: 163px; position: absolute; background: rgba(225, 225, 226, 0.69); border-radius: 20px"></div>
-  <div style="width: 81px; height: 20px; left: 329px; top: 143px; position: absolute; text-align: center; color: #529A60; font-size: 16px; font-family: Roboto; font-weight: 600; word-wrap: break-word">Nome</div>
-  <div style="width: 273px; height: 44px; left: 351px; top: 592px; position: absolute; background: rgba(82, 154, 96, 0.61); border-radius: 30px"></div>
-  <div style="width: 104px; height: 20px; left: 435px; top: 605px; position: absolute; text-align: center; color: #03320C; font-size: 16px; font-family: Roboto; font-weight: 600; word-wrap: break-word">Submeter</div>
-</div>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registo de Incidente</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: #E8F8E5;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Roboto, sans-serif;
+  }
+
+  .form-container {
+    background: #E8F8E5;
+    width: 70%;
+    height: 80%;
+    /* box-shadow: 0 4px 4px rgba(0,0,0,0.25); */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+  }
+
+  .header {
+    background: rgba(82, 154, 96, 0.61);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    width: 60%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2%;
+  }
+
+  .header h1 {
+    color: #03320C;
+    font-size: 2vw;
+    font-weight: 600;
+  }
+
+  .form-box {
+    background: white;
+    border-radius: 20px;
+    width: 60%;
+    height: 90%;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  label {
+    color: #529A60;
+    font-weight: 600;
+    font-size: 1.1vw;
+    margin-bottom: 0.3em;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    background: rgba(225, 225, 226, 0.69);
+    border: none;
+    border-radius: 20px;
+    padding: 0.8em;
+    font-size: 1vw;
+  }
+
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  .submit-btn {
+    margin-top: 1em;
+    background: rgba(82, 154, 96, 0.61);
+    color: #03320C;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    width: 60%;
+    height: 50px;
+    font-size: 1vw;
+    align-self: center;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .submit-btn:hover {
+    background: rgba(82, 154, 96, 0.8);
+  }
+</style>
+</head>
+<body>
+
+  <div class="form-container">
+    <div class="header">
+      <h1>Registo de Incidente</h1>
+    </div>
+
+    <div class="form-box">
+      <div>
+        <label>Nome</label>
+        <input type="text" placeholder="Insira o nome">
+      </div>
+
+      <div>
+        <label>Data</label>
+        <input type="date">
+      </div>
+
+      <div>
+        <label>Tipo de incidente</label>
+        <select>
+          <option>Erro no sistema</option>
+          <option>Falha de rede</option>
+          <option>Problema de login</option>
+          <option>Outro</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Descrição</label>
+        <textarea placeholder="Descreva o incidente..."></textarea>
+      </div>
+
+      <button class="submit-btn">Submeter</button>
+    </div>
+  </div>
+
+</body>
+</html>
