@@ -1,0 +1,3 @@
+./Models/stuff.js
+é o Model do MVC,
+tem a estruturas do objeto tarefas para facilitar a comunicação com a base de dados

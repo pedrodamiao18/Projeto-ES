@@ -1,0 +1,3 @@
+./Controllers/stuff.js
+é o Controller do MVC,
+tem os endpoints associados ao app através de uma função associada ao module.exports

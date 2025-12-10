@@ -1,0 +1,2 @@
+Para ficheiros de serviços de api externas
+tipo email api e coisas do genero
