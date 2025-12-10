@@ -1,0 +1,22 @@
+{
+  "name": "projeto-es",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrodamiao18/Projeto-ES.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrodamiao18/Projeto-ES/issues"
+  },
+  "homepage": "https://github.com/pedrodamiao18/Projeto-ES#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
