@@ -1,212 +1,170 @@
 body {
-      margin: 0;
-      padding: 0;
-      font-family: Roboto, sans-serif;
-      background-image: url('../imagens/backgroundBig.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  background-image: url('../imagens/backgroundBig.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh; 
+  overflow: hidden; 
+}
 
-    .Cover {
-      width: 100%;
-      max-width: 1440px;
-      height: 100%;
-      max-height: 799px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      transform: scale(calc(min(100vw / 1440, 100vh / 799)));
-      transform-origin: top center;
-    }
+.Cover {
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  max-height: 799px;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(calc(min(100vw / 1440, 100vh / 799)));
+  transform-origin: center center;
+}
 
-    .ParteVerde {
-      width: 953px;
-      height: 532px;
-      left: 244px;
-      top: 156px;
-      position: absolute;
-      background: #ABFFB2;
-      border-radius: 65px;
-      overflow: hidden;
-      outline: 12px white solid;
-      outline-offset: -6px;
-    }
+.ParteVerde {
+  width: 913px;
+  height: 492px;
+  left: 244px;
+  top: 116px;
+  position: absolute;
+  background: #ABFFB2;
+  border-radius: 65px;
+  overflow: hidden;
+  outline: 12px white solid;
+  outline-offset: -6px;
+}
 
-    .ParteBranca {
-      width: 447px;
-      height: 532px;
-      left: 244px;
-      top: 156px;
-      position: absolute;
-      border-radius: 65px;
-    }
+.ParteBranca {
+  width: 407px;
+  height: 492px;
+  left: 244px;
+  top: 116px;
+  position: absolute;
+  border-radius: 65px;
+}
 
-    .Rectangle2 {
-      width: 447px;
-      height: 532px;
-      background: white;
-      border-radius: 65px;
-      position: absolute;
-    }
+.Rectangle2 {
+  width: 407px;
+  height: 492px;
+  background: white;
+  border-radius: 65px;
+  position: absolute;
+}
 
-    .Nome, .Email, .Password {
-      position: absolute;
-      font-family: Roboto, sans-serif;
-      font-weight: 400;
-      color: #03320C;
-      font-size: 18px;
-    }
+.Registo {
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  left: 838px;
+  top: 160px;
+  font-size: 28px;
+  font-weight: 500;
+  color: #03320C;
+}
 
-    .Nome {
-      left: 847px;
-      top: 256px;
-    }
+/* Formulário */
+.registo-form {
+  position: absolute;
+  left: 838px;
+  top: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-    .Email {
-      left: 847px;
-      top: 348px;
-    }
+.registo-form label {
+  font-size: 14px;
+  color: #03320C;
+  font-weight: 400;
+}
 
-    .Password {
-      left: 847px;
-      top: 441px;
-    }
+.registo-form input {
+  width: 250px;
+  height: 38px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding-left: 10px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  outline: none;
+}
 
-    .Registo {
-      width: 172px;
-      height: 50px;
-      left: 843px;
-      top: 196px;
-      position: absolute;
-      font-family: Roboto, sans-serif;
-      font-weight: 400;
-      color: #03320C;
-      font-size: 35px;
-    }
+.registo-form input::placeholder {
+  color: rgba(0, 0, 0, 0.42);
+}
 
-    .INnome, .INemail, .INpassword {
-      width: 313px;
-      height: 43px;
-      position: absolute;
-      background: white;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
+/* Botão Criar */
+.BotaoCriar {
+  margin-top: 0px;
+  width: 198px;
+  height: 60px;
+  align-self: center;
+  background: rgba(3, 50, 12, 0.71);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
 
-    .INnome {
-      left: 847px;
-      top: 285px;
-    }
+.BotaoCriar:hover {
+  background: rgba(3, 50, 12, 0.85);
+}
 
-    .INemail {
-      left: 847px;
-      top: 378px;
-    }
+/* Links */
+.JaTemConta {
+  position: absolute;
+  left: 845px;
+  top: 570px;
+  opacity: 0.6;
+  color: #0B1523;
+  font-size: 14px;
+}
 
-    .INpassword {
-      left: 847px;
-      top: 470px;
-    }
+.LoginLink {
+  position: absolute;
+  left: 1006px;
+  top: 570px;
+  opacity: 0.8;
+  color: #0B1523;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
-    .BotaoCriar {
-      width: 247px;
-      height: 52px;
-      left: 878px;
-      top: 534px;
-      position: absolute;
-      background: rgba(3, 50, 12, 0.71);
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 20px;
-    }
+/* SVG */
+[data-svg-wrapper],
+.SvgWrapper2 {
+  position: absolute;
+  left: 84.04px;
+  top: -1.95px;
+}
 
-    .InsiraONome, .InsiraOEmail, .InsiraAPassword {
-      position: absolute;
-      opacity: 0.5;
-      color: rgba(0, 0, 0, 0.42);
-      font-size: 18px;
-      font-family: Roboto, sans-serif;
-      font-weight: 400;
-    }
+.SvgWrapper1 {
+  transform: translateY(150px) translateX(-22px);
+  position: absolute;
+}
 
-    .InsiraONome {
-      left: 858px;
-      top: 296px;
-    }
+svg {
+  width: 442px;
+  height: 433px;
+  display: block;
+}
 
-    .InsiraOEmail {
-      left: 861px;
-      top: 389px;
-    }
-
-    .InsiraAPassword {
-      left: 862px;
-      top: 481px;
-    }
-
-    .Criar {
-      width: 57px;
-      height: 30px;
-      left: 976px;
-      top: 545px;
-      position: absolute;
-      color: white;
-      font-size: 26px;
-      font-family: Roboto, sans-serif;
-      font-weight: 400;
-    }
-
-    .JaTemConta {
-      left: 912px;
-      top: 603px;
-      position: absolute;
-      opacity: 0.5;
-      color: #0B1523;
-      font-size: 18px;
-      font-family: Roboto, sans-serif;
-      font-weight: 400;
-    }
-
-    .Login {
-      left: 1039px;
-      top: 603px;
-      position: absolute;
-      opacity: 0.5;
-      color: #0B1523;
-      font-size: 18px;
-      font-family: Roboto, sans-serif;
-      font-weight: 800;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    [data-svg-wrapper], .SvgWrapper2 {
-      position: absolute;
-      left: 81.29px;
-      top: 81.32px;
-    }
-
-    .SvgWrapper1 {
-      transform: translateY(110px) translateX(-31px) rotate(-24deg);
-      position: absolute;
-    }
-
-    svg {
-      width: 472px;
-      height: 473px;
-      display: block;
-    }
-
-    .SvgWrapper1 svg {
-      width: 462px;
-      height: 379px;
-    }
-
-    path {
-      fill: #ffffff;
-    }
+path {
+  fill: #ffffff;
+  stroke-width: 2;
+}
