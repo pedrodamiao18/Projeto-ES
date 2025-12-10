@@ -19,11 +19,14 @@ body {
   max-width: 1440px;
   height: 100%;
   max-height: 799px;
-  margin: 0 auto; 
+  margin: auto;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transform: scale(calc(min(100vw / 1440, 100vh / 799)));
-  transform-origin: top center;
+  transform-origin: center center;
 }
 
 .ParteVerde {
@@ -48,145 +51,107 @@ body {
   border-radius: 65px;
 }
 
-.Rectangle2 {
-  width: 407px;
-  height: 492px;
-  background: white;
-  border-radius: 65px;
-  position: absolute;
-}
-
-.Email {
-  width: 131px;
-  height: 16px;
-  left: 838px;
-  top: 254px;
-  font-size: 14px;
-}
-
 .Login {
+  position: absolute;
   width: 138px;
   height: 40px;
   left: 838px;
   top: 181px;
   font-size: 28px;
+  font-weight: 500;
+  color: #03320C;
 }
 
-.Password {
-  width: 131px;
-  height: 16px;
+/* Formulário */
+.login-form {
+  position: absolute;
   left: 838px;
-  top: 338px;
-  font-size: 14px;
+  top: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.Entrar {
-  width: 138px;
-  height: 40px;
-  left: 931px;
-  top: 437px;
+.login-form label {
+  font-size: 14px;
+  color: #03320C;
+  font-weight: 400;
+}
+
+.login-form input {
+  width: 250px;
+  height: 38px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding-left: 10px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  outline: none;
+}
+
+.login-form input::placeholder {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.BotaoEntrar {
+  margin-top: 10px;
+  width: 198px;
+  height: 60px; /* aumentado */
+  align-self: center;
+  background: rgba(3, 50, 12, 0.71);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  border: none;
   color: white;
-  font-size: 21px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.BotaoEntrar:hover {
+  background: rgba(3, 50, 12, 0.85);
+}
+
+.AindaNOTemConta,
+.Registar,
+.EsqueceuAPalavraPasse {
+  position: absolute;
+  color: #0B1523;
+  font-size: 14px;
 }
 
 .AindaNOTemConta {
   left: 845px;
-  top: 487px;
-  opacity: 0.5;
+  top: 530px; /* antes 487px */
+  opacity: 0.6;
   color: #0B1523;
   font-size: 14px;
 }
 
 .Registar {
   left: 1006px;
-  top: 487px;
-  opacity: 0.5;
+  top: 530px; /* antes 487px */
+  opacity: 0.8;
   color: #0B1523;
   font-size: 14px;
   font-weight: 800;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .EsqueceuAPalavraPasse {
-  width: 288px;
-  left: 860px;
-  top: 511px;
+  left: 880px;
+  top: 555px; /* antes 520px */
   opacity: 0.5;
   color: #0B1523;
   font-size: 14px;
-}
-
-.InsiraAPassword {
-  /* left: 806px + 40px = 846px */
-  left: 846px;
-  top: 369px;
-  opacity: 0.5;
-  color: rgba(0, 0, 0, 0.42);
-  font-size: 14px;
-}
-
-.InsiraOEmail {
-  /* left: 806px + 40px = 846px */
-  left: 846px;
-  top: 286px;
-  opacity: 0.5;
-  color: rgba(0, 0, 0, 0.42);
-  font-size: 14px;
-}
-
-.INnome,
-.Inpassword {
-  width: 250px;
-  height: 34px;
-  position: absolute;
-  background: white;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-}
-
-.INnome {
-  left: 838px;
-  top: 277px;
-}
-
-.Inpassword {
-  left: 838px;
-  top: 360px;
-}
-
-.BotaoEntrar {
-  width: 198px;
-  height: 42px;
-  left: 862px;
-  top: 428px;
-  position: absolute;
-  background: rgba(3, 50, 12, 0.71);
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 16px;
-}
-
-.Email,
-.Password,
-.Login,
-.Entrar,
-.AindaNOTemConta,
-.Registar,
-.EsqueceuAPalavraPasse,
-.InsiraAPassword,
-.InsiraOEmail {
-  position: absolute;
-  font-family: Roboto, sans-serif;
-  font-weight: 400;
-  color: #03320C;
-}
-
-.Entrar{
-  position: absolute;
-  font-family: Roboto, sans-serif;
-  font-weight: 400;
-  color: #ffffff;
+  cursor: pointer;
 }
 
 
+/* SVG */
 [data-svg-wrapper],
 .SvgWrapper2 {
   position: absolute;

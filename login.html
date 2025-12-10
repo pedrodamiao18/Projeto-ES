@@ -10,10 +10,6 @@
   <div class="Cover">
     <div class="ParteVerde"></div>
 
-    <div class="Email">Email</div>
-    <div class="Login">Login</div>
-    <div class="Password">Password</div>
-
     <div class="ParteBranca">
       <div class="Rectangle2"></div>
 
@@ -32,13 +28,18 @@
       </div>
     </div>
 
-    <div class="INnome"></div>
-    <div class="Inpassword"></div>
-    <div class="BotaoEntrar"></div>
+    <div class="Login">Login</div>
 
-    <div class="InsiraAPassword">Insira a password</div>
-    <div class="InsiraOEmail">Insira o email</div>
-    <div class="Entrar">Entrar</div>
+    <form class="login-form">
+      <label for="email" class="Email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Insira o email" required>
+
+      <label for="password" class="Password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Insira a password" required>
+
+      <button type="submit" class="BotaoEntrar">Entrar</button>
+    </form>
+
     <div class="AindaNOTemConta">Ainda não tem conta?</div>
     <div class="Registar">Registar</div>
     <div class="EsqueceuAPalavraPasse">Esqueceu a palavra passe?</div>
