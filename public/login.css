@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Roboto, sans-serif;
-  background-image: url('imagens/backgroundBig.jpeg');
+  background-image: url('../imagens/backgroundBig.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -49,6 +49,14 @@ body {
   top: 116px;
   position: absolute;
   border-radius: 65px;
+}
+
+.Rectangle2 {
+  width: 407px;
+  height: 492px;
+  background: white;
+  border-radius: 65px;
+  position: absolute;
 }
 
 .Login {
