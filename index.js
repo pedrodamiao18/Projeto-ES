@@ -1,21 +1,22 @@
-//vai ser para guardar variaveis sensiveis num ficheiro .env
-//o ficheiro .env nao deve ser posto to git
 require('dotenv').config();
 const express = require("express");
 const path = require('path');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000;
-//const mongoose = require('mongoose'); MongoDB e Mongoose
+const mongoose = require("mongoose");
+const PORT = process.env.PORT;
 
-//MIDDLEWARE
-// Servir ficheiros estáticos da pasta 'public' (HTML, CSS, JS, imagens)
+
 app.use(express.static(path.join(__dirname, 'public')));
-//impede o browser de bloquear pedidos entre o frontend e o backend
+
 app.use(cors());
-//faz parse do json que vem no body do pedido
-//apenas se usarmos Content-Type : application/json
+
 app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB conectado"))
+  .catch((err) => console.log(err));
+
 
 // Página inicial
 app.get('/', (req, res) => {
