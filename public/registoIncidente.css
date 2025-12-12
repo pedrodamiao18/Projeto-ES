@@ -2,19 +2,19 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Inter, sans-serif;
 }
 
 body {
-  display: flex;
   background: #e8f8e5;
+  width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  display: flex;
+  font-family: Roboto, sans-serif;
 }
 
 .sidebar {
   width: 80px;
-  background: rgba(82, 154, 96, 0.61); /* verde translúcido igual aos headers */
+  background: rgba(82, 154, 96, 0.61);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -54,8 +54,21 @@ body {
 
 .main-content {
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 40px;
-  overflow-y: auto;
+}
+
+.form-container {
+  background: #e8f8e5;
+  width: 70%;
+  height: 80%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2%;
 }
 
 .header {
@@ -80,70 +93,55 @@ body {
   margin: 0;
 }
 
-.filtros {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-bottom: 25px;
-}
-
-.filtros button {
+.form-box {
   background: white;
-  border: 2px solid #529a60;
-  color: #03320c;
-  padding: 10px 25px;
   border-radius: 20px;
-  font-size: 1vw;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.filtros button:hover {
-  background: rgba(82, 154, 96, 0.2);
-}
-
-.filtros .ativo {
-  background: #529a60;
-  color: white;
-  border: 2px solid #529a60;
-}
-
-.lista-notificacoes {
+  width: 60%;
+  height: 90%;
+  padding: 3%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  align-items: center;
+  justify-content: space-around;
 }
 
-.notificacao {
-  width: 90%;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-}
-
-.notificacao p {
-  color: #03320c;
+label {
+  color: #529a60;
+  font-weight: 600;
   font-size: 1.1vw;
-  font-weight: 500;
+  margin-bottom: 0.3em;
 }
 
-.notificacao button {
-  background: rgba(82, 154, 96, 0.61);
+input,
+textarea,
+select {
+  width: 100%;
+  background: rgba(225, 225, 226, 0.69);
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
+  padding: 0.8em;
+  font-size: 1vw;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+.submit-btn {
+  margin-top: 1em;
+  background: rgba(82, 154, 96, 0.61);
   color: #03320c;
   font-weight: 600;
-  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  width: 60%;
+  height: 50px;
   font-size: 1vw;
+  align-self: center;
   cursor: pointer;
   transition: 0.2s;
 }
 
-.notificacao button:hover {
+.submit-btn:hover {
   background: rgba(82, 154, 96, 0.8);
 }

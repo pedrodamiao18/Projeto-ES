@@ -4,140 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Incidentes</title>
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    background: #E8F8E5;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    font-family: Inter, sans-serif;
-    position: relative;
-  }
-
-  .header {
-    width: 30%;
-    height: 10%;
-    background: rgba(82, 154, 96, 0.61);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    position: absolute;
-    top: 18%;
-    left: 35%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .header h1 {
-    color: #03320C;
-    font-size: 2vw;
-    font-weight: 600;
-  }
-
-  .search-bar {
-    width: 35%;
-    height: 6%;
-    background: rgba(225, 225, 226, 0.69);
-    border-radius: 20px;
-    position: absolute;
-    top: 35%;
-    left: 5%;
-    display: flex;
-    align-items: center;
-    padding-left: 1%;
-    font-size: 1.2vw;
-  }
-
-  .table-container {
-    width: 90%;
-    height: 45%;
-    background: rgba(225, 225, 226, 0.69);
-    border-radius: 20px;
-    position: absolute;
-    top: 42%;
-    left: 5%;
-  }
-
-  .table-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1% 6%;
-    font-size: 1.2vw;
-  }
-
-  .table {
-    background: white;
-    border-radius: 20px;
-    width: 95%;
-    height: 75%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 2%;
-  }
-
-  .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.1vw;
-    border-bottom: 1px solid black;
-    padding-bottom: 0.5%;
-  }
-
-  .row:last-child {
-    border: none;
-  }
-
-  .status {
-    border-radius: 10px;
-    padding: 0.5em 1em;
-    color: black;
-    font-weight: 400;
-  }
-
-  .aberto { background: #EE0B0B; }
-  .resolvido { background: #5AEE0B; }
-  .progresso { background: #EAEE0B; }
-</style>
+<link rel="stylesheet" href="https://unpkg.com/lucide@latest"></link>
+<link rel="stylesheet" href="incidentes.css">
 </head>
 <body>
 
-  <div class="header">
-    <h1>Incidentes</h1>
-  </div>
-
-  <input type="text" class="search-bar" placeholder="🔍 Pesquisar incidente...">
-  
-  <div class="table-container">
-    <div class="table-header">
-      <span>Nome</span>
-      <span>Estado</span>
+  <div class="sidebar">
+    <div class="nav-section">
+      <div class="nav-item active" title="Dashboard" onclick="window.location.href='incidentes.html'">
+        <i data-lucide="layout-dashboard"></i>
+      </div>
+      <div class="nav-item" title="Incidentes" onclick="window.location.href='registoIncidente.html'">
+        <i data-lucide="alert-triangle"></i>
+      </div>
+      <div class="nav-item" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
+        <i data-lucide="bell"></i>
+      </div>
+      <div class="nav-item" title="Configurações" onclick="window.location.href='editarIncidente.html'">
+        <i data-lucide="edit"></i>
+      </div>
     </div>
 
-    <div class="table">
-      <div class="row">
-        <span>Erro no login</span>
-        <span class="status aberto">Aberto</span>
-      </div>
-      <div class="row">
-        <span>Erro no login</span>
-        <span class="status resolvido">Resolvido</span>
-      </div>
-      <div class="row">
-        <span>Erro no login</span>
-        <span class="status progresso">Em progresso</span>
+    <div class="nav-section">
+      <div class="nav-item" title="Perfil" onclick="window.location.href='perfil.html'">
+        <i data-lucide="user"></i>
       </div>
     </div>
   </div>
+
+  <div class="main-content">
+    <div class="header">
+      <h1>Incidentes</h1>
+    </div>
+
+    <input type="text" class="search-bar" placeholder="🔍 Pesquisar incidente...">
+
+    <div class="table-container">
+      <div class="table-header">
+        <span>Nome</span>
+        <span>Estado</span>
+      </div>
+
+      <div class="table">
+        <div class="row">
+          <span>Erro no login</span>
+          <span class="status aberto">Aberto</span>
+        </div>
+        <div class="row">
+          <span>Falha de rede</span>
+          <span class="status resolvido">Resolvido</span>
+        </div>
+        <div class="row">
+          <span>Problema de acesso</span>
+          <span class="status progresso">Em progresso</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 
 </body>
 </html>

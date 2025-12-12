@@ -1,145 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registo de Incidente</title>
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    background: #E8F8E5;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Roboto, sans-serif;
-  }
-
-  .form-container {
-    background: #E8F8E5;
-    width: 70%;
-    height: 80%;
-    /* box-shadow: 0 4px 4px rgba(0,0,0,0.25); */
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2%;
-  }
-
-  .header {
-    background: rgba(82, 154, 96, 0.61);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    width: 60%;
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2%;
-  }
-
-  .header h1 {
-    color: #03320C;
-    font-size: 2vw;
-    font-weight: 600;
-  }
-
-  .form-box {
-    background: white;
-    border-radius: 20px;
-    width: 60%;
-    height: 90%;
-    padding: 3%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  label {
-    color: #529A60;
-    font-weight: 600;
-    font-size: 1.1vw;
-    margin-bottom: 0.3em;
-  }
-
-  input, textarea, select {
-    width: 100%;
-    background: rgba(225, 225, 226, 0.69);
-    border: none;
-    border-radius: 20px;
-    padding: 0.8em;
-    font-size: 1vw;
-  }
-
-  textarea {
-    height: 100px;
-    resize: none;
-  }
-
-  .submit-btn {
-    margin-top: 1em;
-    background: rgba(82, 154, 96, 0.61);
-    color: #03320C;
-    font-weight: 600;
-    border: none;
-    border-radius: 30px;
-    width: 60%;
-    height: 50px;
-    font-size: 1vw;
-    align-self: center;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .submit-btn:hover {
-    background: rgba(82, 154, 96, 0.8);
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registo de Incidente</title>
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest"></link>
+  <link rel="stylesheet" href="registoIncidente.css">
 </head>
 <body>
 
-  <div class="form-container">
-    <div class="header">
-      <h1>Registo de Incidente</h1>
+
+  <div class="sidebar">
+    <div class="nav-section">
+      <div class="nav-item" title="Dashboard" onclick="window.location.href='incidentes.html'">
+        <i data-lucide="layout-dashboard"></i>
+      </div>
+      <div class="nav-item active" title="Incidentes" onclick="window.location.href='registoIncidente.html'">
+        <i data-lucide="alert-triangle"></i>
+      </div>
+      <div class="nav-item" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
+        <i data-lucide="bell"></i>
+      </div>
+      <div class="nav-item" title="Configurações" onclick="window.location.href='editarIncidente.html'">
+        <i data-lucide="edit"></i>
+      </div>
     </div>
 
-    <div class="form-box">
-      <div>
-        <label>Nome</label>
-        <input type="text" placeholder="Insira o nome">
+    <div class="nav-section">
+      <div class="nav-item" title="Perfil">
+        <i data-lucide="user"></i>
       </div>
-
-      <div>
-        <label>Data</label>
-        <input type="date">
-      </div>
-
-      <div>
-        <label>Tipo de incidente</label>
-        <select>
-          <option>Erro no sistema</option>
-          <option>Falha de rede</option>
-          <option>Problema de login</option>
-          <option>Outro</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Descrição</label>
-        <textarea placeholder="Descreva o incidente..."></textarea>
-      </div>
-
-      <button class="submit-btn">Submeter</button>
     </div>
   </div>
+
+  <div class="main-content">
+    <div class="form-container">
+      <div class="header">
+        <h1>Registo de Incidente</h1>
+      </div>
+
+      <div class="form-box">
+        <div>
+          <label>Nome</label>
+          <input type="text" placeholder="Insira o nome">
+        </div>
+
+        <div>
+          <label>Data</label>
+          <input type="date">
+        </div>
+
+        <div>
+          <label>Tipo de incidente</label>
+          <select>
+            <option>Erro no sistema</option>
+            <option>Falha de rede</option>
+            <option>Problema de login</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Descrição</label>
+          <textarea placeholder="Descreva o incidente..."></textarea>
+        </div>
+
+        <button class="submit-btn">Submeter</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 
 </body>
 </html>

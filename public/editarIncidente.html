@@ -1,102 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Editar Incidente</title>
-    <style>
-      :root{
-        --bg: #E8F8E5;
-        --accent: #529A60;
-        --accent-50: rgba(82,154,96,0.61);
-        --card: #fff;
-        --muted: #E1E1E2;
-        --text: #03320C;
-        --radius: 16px;
-        --maxw: 980px;
-      }
-      *{box-sizing:border-box}
-      body{font-family:Roboto,system-ui,Arial,sans-serif;background:var(--bg);margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center}
-      .wrap{width:100%;max-width:var(--maxw);padding:24px}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Editar Incidente</title>
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest"></link>
+  <link rel="stylesheet" href="editarIncidente.css">
+</head>
+<body>
 
-      .header{
-        background:var(--accent-50);
-        border-radius:24px;
-        padding:18px 24px;
-        box-shadow:0 4px 8px rgba(0,0,0,0.08);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        margin-bottom:18px
-      }
-      .header h1{
-        margin:0;
-        color:var(--text);
-        font-size:22px;
-        font-weight:700}
+  <aside class="sidebar">
+    <div class="nav-section">
+      <div class="nav-item" title="Dashboard" onclick="window.location.href='incidentes.html'">
+        <i data-lucide="layout-dashboard"></i>
+      </div>
+      <div class="nav-item" title="Incidentes" onclick="window.location.href='registoIncidentes.html'">
+        <i data-lucide="alert-triangle"></i>
+      </div>
+      <div class="nav-item" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
+        <i data-lucide="bell"></i>
+      </div>
+      <div class="nav-item active" title="Configurações" onclick="window.location.href='editarIncidente.html'">
+        <i data-lucide="edit"></i>
+      </div>
+    </div>
 
-      .card{
-        background:var(--card);
-        border-radius:20px;
-        padding:28px;
-        box-shadow:0 6px 18px rgba(0,0,0,0.06);
-        display:grid;
-        grid-template-columns:1fr 340px;
-        gap:24px}
-      @media (max-width:900px){.card{grid-template-columns:1fr;}}
+    <div class="nav-section">
+      <div class="nav-item" title="Perfil" onclick="window.location.href='perfil.html'">
+        <i data-lucide="user"></i>
+      </div>
+    </div>
+  </aside>
 
-      .field{margin-bottom:14px}
-      .label{display:block;
-        color:var(--accent);
-        font-weight:600;
-        margin-bottom:8px}
-      .value{
-        background:var(--muted);
-        border-radius:12px;
-        padding:12px;color:#222}
 
-      .controls{
-        display:flex;
-        gap:12px;
-        margin-top:18px}
-      .btn{
-        flex:1;
-        padding:12px 18px;
-        border-radius:28px;
-        border:none;
-        background:var(--accent-50);
-        color:var(--text);
-        font-weight:700;
-        cursor:pointer}
-
-      .right-column{
-        display:flex;
-        flex-direction:column;
-        gap:12px}
-
-      input[type=text],
-       input[type=date],
-        select,
-        textarea{
-        width:100%;
-        padding:10px;
-        border-radius:12px;
-        border:1px solid #d6d6d6;
-        font-size:14px
-      }
-      textarea{
-        min-height:120px;
-        resize:vertical}
-
-      /* small helpers */
-      .row{display:flex;gap:12px}
-      .row > *{flex:1}
-    </style>
-  </head>
-  <body>
+  <div class="content">
     <div class="wrap">
       <div class="header">
-        <h1>Incidente #ID</h1>
+        <h1>Editar Incidente #123</h1>
       </div>
 
       <main class="card">
@@ -139,5 +79,11 @@
         </aside>
       </main>
     </div>
-  </body>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
 </html>

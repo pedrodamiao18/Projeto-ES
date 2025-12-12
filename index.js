@@ -6,7 +6,6 @@ const app = express();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT;
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
@@ -17,13 +16,10 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB conectado"))
   .catch((err) => console.log(err));
 
-
-// Página inicial
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// Iniciar servidor
 app.listen(PORT, () => {
   console.log(`Servidor a correr em http://localhost:${PORT}`);
 });

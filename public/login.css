@@ -132,7 +132,7 @@ body {
 
 .AindaNOTemConta {
   left: 860px;
-  top: 530px; /* antes 487px */
+  top: 530px;
   opacity: 0.6;
   color: #0B1523;
   font-size: 14px;
@@ -140,7 +140,7 @@ body {
 
 .Registar {
   left: 1010px;
-  top: 528px; /* antes 487px */
+  top: 528px;
   opacity: 0.8;
   color: #0B1523;
   font-size: 14px;
@@ -151,7 +151,7 @@ body {
 
 .EsqueceuAPalavraPasse {
   left: 880px;
-  top: 555px; /* antes 520px */
+  top: 555px;
   opacity: 0.5;
   color: #0B1523;
   font-size: 14px;
