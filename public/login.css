@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Roboto, sans-serif;
-  background-image: url('../imagens/backgroundBig.jpeg');
+  background-image: url('imagens/backgroundBig.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -131,7 +131,7 @@ body {
 }
 
 .AindaNOTemConta {
-  left: 845px;
+  left: 860px;
   top: 530px; /* antes 487px */
   opacity: 0.6;
   color: #0B1523;
@@ -139,8 +139,8 @@ body {
 }
 
 .Registar {
-  left: 1006px;
-  top: 530px; /* antes 487px */
+  left: 1010px;
+  top: 528px; /* antes 487px */
   opacity: 0.8;
   color: #0B1523;
   font-size: 14px;
