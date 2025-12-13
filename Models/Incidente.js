@@ -9,4 +9,4 @@ const incidenteSchema = new mongoose.Schema({
   tipoIncidente: { type: String, required: true }
 });
 
-module.exports = mongoose.model("Incidente", incidenteSchema);
+module.exports = mongoose.model("incidentes", incidenteSchema);

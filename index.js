@@ -20,6 +20,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+// Rotas
+const incidentesRouter = require('./Routes/incidentes');
+app.use('/api/incidentes', incidentesRouter);
+
+
 app.listen(PORT, () => {
   console.log(`Servidor a correr em http://localhost:${PORT}`);
 });
