@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registo de Incidente</title>
-  <link rel="stylesheet" href="https://unpkg.com/lucide@latest"></link>
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest">
+  </link>
   <link rel="stylesheet" href="registoIncidente.css">
 </head>
+
 <body>
 
 
@@ -42,17 +45,17 @@
       <div class="form-box">
         <div>
           <label>Nome</label>
-          <input type="text" placeholder="Insira o nome">
+          <input id="nome" type="text" placeholder="Insira o nome">
         </div>
 
         <div>
           <label>Data</label>
-          <input type="date">
+          <input id="data" type="date">
         </div>
 
         <div>
           <label>Tipo de incidente</label>
-          <select>
+          <select id="tipo">
             <option>Erro no sistema</option>
             <option>Falha de rede</option>
             <option>Problema de login</option>
@@ -62,11 +65,12 @@
 
         <div>
           <label>Descrição</label>
-          <textarea placeholder="Descreva o incidente..."></textarea>
+          <textarea id="descricao" placeholder="Descreva o incidente..."></textarea>
         </div>
 
-        <button class="submit-btn">Submeter</button>
+        <button class="submit-btn" id="btnSubmeter">Submeter</button>
       </div>
+        <script src="registoIncidente.js"></script>
     </div>
   </div>
 
@@ -76,4 +80,5 @@
   </script>
 
 </body>
+
 </html>
