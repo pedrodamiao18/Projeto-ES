@@ -3,12 +3,13 @@ document.getElementById('btnSubmeter').addEventListener('click', async (e) => {
 
   const incidente = {
     nome: document.getElementById('nome').value.trim(),
-    data: document.getElementById('data').value,
-    tipo: document.getElementById('tipo').value,
+    //data: document.getElementById('data').value,
+    tipoIncidente: document.getElementById('tipo').value,
+    categoria: document.getElementById('categoria').value,
     descricao: document.getElementById('descricao').value.trim()
   };
 
-  if (!incidente.nome || !incidente.data || !incidente.tipo || !incidente.descricao) {
+  if (!incidente.nome || !incidente.tipoIncidente || !incidente.categoria || !incidente.descricao) {
     alert('Por favor, preencha todos os campos.');
     return;
   }

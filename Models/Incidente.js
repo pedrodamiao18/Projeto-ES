@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 
 const incidenteSchema = new mongoose.Schema({
-  id_cliente: { type: Number, required: true },
-  id_tecnico: { type: Number },
-  estado: { type: String, required: true },
+  id_cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'User',default: null },
+  id_tecnico: { type: mongoose.Schema.Types.ObjectId, ref: 'User',default: null },
+  estado: { type: String, enum: ['Por iniciar', 'Em progresso', 'Resolvido'],
+  default: 'Por iniciar'},
   descricao: { type: String, required: true },
-  data: { type: Date, required: true },
-  tipoIncidente: { type: String, required: true }
+  data: { type: Date, default: Date.now },
+  tipoIncidente: { type: String, required: true },
+  categoria: {type: String, required: true},
+  nome: {type: String, required: true}
 });
 
 module.exports = mongoose.model("incidentes", incidenteSchema);

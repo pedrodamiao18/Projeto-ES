@@ -52,14 +52,25 @@
           <label>Data</label>
           <input id="data" type="date">
         </div>
+        <div>
+        <label>Categoria</label>
+        <select name="categoria" id="categoria"  required>
+          <option value="">-- Selecione --</option>
+          <option value="Sistema e Aplicações">Sistema e Aplicações</option>
+          <option value="Rede e Conectividade">Rede e Conectividade</option>
+          <option value="Hardware e Equipamentos">Hardware e Equipamentos</option>
+          <option value="Comunicação">Comunicação</option>
+          <option value="Segurança">Segurança</option>
+          <option value="Outro">Outro</option>
+        </select>
+
+        </select>
+      </div>
 
         <div>
           <label>Tipo de incidente</label>
           <select id="tipo">
-            <option>Erro no sistema</option>
-            <option>Falha de rede</option>
-            <option>Problema de login</option>
-            <option>Outro</option>
+             <option value="">-- Selecione a categoria primeiro --</option>
           </select>
         </div>
 
@@ -78,6 +89,74 @@
   <script>
     lucide.createIcons();
   </script>
+
+  <script>
+const tiposPorCategoria = {
+  "Sistema e Aplicações": [
+    "Erro no sistema",
+    "Aplicação não abre",
+    "Aplicação bloqueia / crash",
+    "Lentidão do sistema",
+    "Funcionalidade não disponível",
+    "Erro após atualização",
+    "Outro"
+  ],
+  "Rede e Conectividade": [
+    "Sem acesso à internet",
+    "Ligação instável",
+    "VPN não funciona",
+    "Wi-Fi indisponível",
+    "Rede lenta",
+    "Outro"
+    
+  ],
+  "Hardware e Equipamentos": [
+    "Computador não liga",
+    "Ecrã com problemas",
+    "Teclado / rato não funcionam",
+    "Impressora não imprime",
+    "Equipamento danificado",
+    "Outro"
+  ],
+  "Comunicação": [
+    "Email não funciona",
+    "Não recebe emails",
+    "Outlook / Gmail não abre",
+    "Problemas com Teams / Zoom",
+    "Outro"
+  ],
+  "Segurança": [
+    "Suspeita de phishing",
+    "Vírus / malware",
+    "Acesso não autorizado",
+    "Email suspeito",
+    "Outro"
+  ],
+  "Outro": [
+    "Pedido de instalação de software",
+    "Pedido de atualização",
+    "Pedido de novo equipamento",
+    "Outro"
+  ]
+};
+
+const categoriaSelect = document.getElementById("categoria");
+const tipoSelect = document.getElementById("tipo");
+
+categoriaSelect.addEventListener("change", () => {
+  const categoria = categoriaSelect.value;
+  tipoSelect.innerHTML = '<option value="">-- Selecione --</option>';
+
+  if (tiposPorCategoria[categoria]) {
+    tiposPorCategoria[categoria].forEach(tipo => {
+      const option = document.createElement("option");
+      option.value = tipo;
+      option.textContent = tipo;
+      tipoSelect.appendChild(option);
+    });
+  }
+});
+</script>
 
 </body>
 
