@@ -17,7 +17,7 @@ document.getElementById('incidenteIdTitulo').textContent = `#${curtoId}`;
     // Campos editáveis
    
     document.getElementById('data').value = incidente.data?.slice(0, 10);
-    document.getElementById('descricao').value = incidente.descricao || '';
+    document.getElementById('descricao').value = incidente.descricao;
     document.getElementById('categoria').value = incidente.categoria;
     preencherTipos(incidente.categoria, incidente.tipoIncidente);
 
@@ -36,8 +36,6 @@ document.getElementById('formEditar').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const dados = {
-    
-    tipo: document.getElementById('tipo').value,
     data: document.getElementById('data').value,
     tipoIncidente: document.getElementById('tipo').value,
     categoria: document.getElementById('categoria').value,

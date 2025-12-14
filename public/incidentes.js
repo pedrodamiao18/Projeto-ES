@@ -8,7 +8,9 @@ async function carregarIncidentes(estado = '') {
     const url = estado
       ? `/api/incidentes?estado=${encodeURIComponent(estado)}`: '/api/incidentes';
 
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      credentials: 'include' 
+  });
     const incidentes = await res.json();
 
     tabela.innerHTML = '';
@@ -18,7 +20,7 @@ async function carregarIncidentes(estado = '') {
       row.classList.add('row');
 
       row.innerHTML = `
-        <span>${incidente.tipoIncidente}</span>
+        <span>${incidente.categoria}</span>
         <span class="status ${getStatusClass(incidente.estado)}">
           ${incidente.estado}
         </span>

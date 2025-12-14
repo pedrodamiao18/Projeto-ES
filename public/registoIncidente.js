@@ -18,6 +18,7 @@ document.getElementById('btnSubmeter').addEventListener('click', async (e) => {
     const resposta = await fetch('/api/incidentes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+       credentials: 'include', 
       body: JSON.stringify(incidente)
     });
 
