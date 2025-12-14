@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil</title>
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest"></link>
+  <link rel="stylesheet" href="perfil.css" />
+</head>
+<body>
+    <aside class="sidebar">
+    <div class="nav-section">
+      <div class="nav-item" title="Dashboard" onclick="window.location.href='incidentes.html'">
+        <i data-lucide="layout-dashboard"></i>
+      </div>
+      <div class="nav-item" title="Incidentes" onclick="window.location.href='registoIncidentes.html'">
+        <i data-lucide="alert-triangle"></i>
+      </div>
+      <div class="nav-item" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
+        <i data-lucide="bell"></i>
+      </div>
+      <div class="nav-item active" title="Configurações" onclick="window.location.href='editarIncidente.html'">
+        <i data-lucide="edit"></i>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-item" title="Perfil" onclick="window.location.href='perfil.html'">
+        <i data-lucide="user"></i>
+      </div>
+    </div>
+  </aside>
+ <div class="main-content">
+  <div class="perfil-container">
+     <div class="header">
+        <h1>Meu Perfil</h1>
+    </div>
+    <!-- CARD BRANCO -->
+    <div class="form-box">
+
+      <div class="perfil-card">
+        <p><strong>Nome:</strong> <span id="nome"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Perfil:</strong> <span id="role"></span></p>
+      </div>
+
+      <div class="perfil-card hidden" id="cliente-actions"></div>
+      <div class="perfil-card hidden" id="tecnico-actions"></div>
+      <div class="perfil-card hidden" id="admin-actions"></div>
+    </div>
+     <button id="logout" class="btn logout">Logout</button>
+  </div>
+</div>
+
+
+  <script src="perfil.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

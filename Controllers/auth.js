@@ -68,11 +68,34 @@ exports.registo = (req, res) => {
 
 //esconder o formulario login e fazer aparecer cena de "a carregar"
 // e depois mudar conforme esteja ou nao autenticado
-exports.isLoggedIn = (req, res) => {
+exports.isLoggedIn = async(req, res) => {
     //só passa pelo middleware se estiver autenticado
 
+    try {
+    const user = await User
+      .findById(req.user.id)
+      .select('name email role');
+
+    if (!user) {
+      return res.status(401).json({ isLoggedIn: false });
+    }
+
     res.status(200).json({
-        isLoggedIn: true,
-        user: req.user
+      isLoggedIn: true,
+      user
     });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ isLoggedIn: false });
+    }
 }
+
+exports.logout = (req, res) => {
+  res.clearCookie('token', {
+    httpOnly: true,
+    sameSite: 'lax'
+  });
+
+  res.status(200).json({ success: true });
+};
