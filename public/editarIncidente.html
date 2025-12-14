@@ -36,31 +36,43 @@
   <div class="content">
     <div class="wrap">
       <div class="header">
-        <h1>Editar Incidente #123</h1>
+        <h1>Editar Incidente <span id="incidenteIdTitulo"></span></h1>
+
       </div>
 
       <main class="card">
         <section>
           <div class="field">
             <label class="label">Estado Atual</label>
-            <div class="value">Pendente</div>
+            <div class="value disabled" id="estado" >Pendente</div>
           </div>
 
           <div class="field">
             <label class="label">Técnico responsável</label>
-            <div class="value">João Silva</div>
+            <div class="value" id="tecnico">João Silva</div>
           </div>
         </section>
 
         <aside class="right-column">
           <div>
-            <label class="label" for="tipo">Editar tipo</label>
-            <select id="tipo" name="tipo">
-              <option>Rede</option>
-              <option>Serviço</option>
-              <option>Hardware</option>
-            </select>
-          </div>
+        <label class="label">Categoria</label>
+        <select name="categoria" id="categoria"  required>
+          <option value="">-- Selecione --</option>
+          <option value="Sistema e Aplicações">Sistema e Aplicações</option>
+          <option value="Rede e Conectividade">Rede e Conectividade</option>
+          <option value="Hardware e Equipamentos">Hardware e Equipamentos</option>
+          <option value="Comunicação">Comunicação</option>
+          <option value="Segurança">Segurança</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+
+        <div>
+          <label class="label">Tipo de incidente</label>
+          <select id="tipo">
+             <option value="">-- Selecione a categoria primeiro --</option>
+          </select>
+        </div>
 
           <div>
             <label class="label" for="data">Editar data</label>
@@ -71,11 +83,11 @@
             <label class="label" for="descricao">Descrição</label>
             <textarea id="descricao" placeholder="Edite a descrição se necessário..."></textarea>
           </div>
-
+          <form id="formEditar">
           <div class="controls">
-            <button class="btn" id="editar">Editar</button>
-            <button class="btn" id="submeter">Submeter</button>
+            <button type="submit" class="btn" id="submeter">Submeter</button>
           </div>
+          </form>
         </aside>
       </main>
     </div>
@@ -85,5 +97,73 @@
   <script>
     lucide.createIcons();
   </script>
+  <script src="editarIncidente.js"></script>
+   <script>
+const tiposPorCategoria = {
+  "Sistema e Aplicações": [
+    "Erro no sistema",
+    "Aplicação não abre",
+    "Aplicação bloqueia / crash",
+    "Lentidão do sistema",
+    "Funcionalidade não disponível",
+    "Erro após atualização",
+    "Outro"
+  ],
+  "Rede e Conectividade": [
+    "Sem acesso à internet",
+    "Ligação instável",
+    "VPN não funciona",
+    "Wi-Fi indisponível",
+    "Rede lenta",
+    "Outro"
+    
+  ],
+  "Hardware e Equipamentos": [
+    "Computador não liga",
+    "Ecrã com problemas",
+    "Teclado / rato não funcionam",
+    "Impressora não imprime",
+    "Equipamento danificado",
+    "Outro"
+  ],
+  "Comunicação": [
+    "Email não funciona",
+    "Não recebe emails",
+    "Outlook / Gmail não abre",
+    "Problemas com Teams / Zoom",
+    "Outro"
+  ],
+  "Segurança": [
+    "Suspeita de phishing",
+    "Vírus / malware",
+    "Acesso não autorizado",
+    "Email suspeito",
+    "Outro"
+  ],
+  "Outro": [
+    "Pedido de instalação de software",
+    "Pedido de atualização",
+    "Pedido de novo equipamento",
+    "Outro"
+  ]
+};
+
+const categoriaSelect = document.getElementById("categoria");
+const tipoSelect = document.getElementById("tipo");
+
+categoriaSelect.addEventListener("change", () => {
+  const categoria = categoriaSelect.value;
+  tipoSelect.innerHTML = '<option value="">-- Selecione --</option>';
+
+  if (tiposPorCategoria[categoria]) {
+    tiposPorCategoria[categoria].forEach(tipo => {
+      const option = document.createElement("option");
+      option.value = tipo;
+      option.textContent = tipo;
+      tipoSelect.appendChild(option);
+    });
+  }
+});
+</script>
 </body>
 </html>

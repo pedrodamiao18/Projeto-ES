@@ -25,7 +25,7 @@ async function carregarIncidentes(estado = '') {
       `;
 
       row.addEventListener('click', () => {
-        window.location.href = `/incidente.html?id=${incidente._id}`;
+        window.location.href = `/editarIncidente.html?id=${incidente._id}`;
       });
 
       tabela.appendChild(row);
