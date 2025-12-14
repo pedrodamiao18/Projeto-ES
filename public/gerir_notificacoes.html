@@ -4,11 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerir Notificações</title>
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest"></link>
   <link rel="stylesheet" href="gerir_notificacoes.css">
 </head>
 <body>
-  <main class="notificacoes">
-    <header>
+
+  <aside class="sidebar">
+    <div class="nav-section">
+      <div class="nav-item" title="Dashboard" onclick="window.location.href='incidentes.html'">
+        <i data-lucide="layout-dashboard"></i>
+      </div>
+      <div class="nav-item" title="Incidentes" onclick="window.location.href='registoIncidente.html'">
+        <i data-lucide="alert-triangle"></i>
+      </div>
+      <div class="nav-item active" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
+        <i data-lucide="bell"></i>
+      </div>
+      <div class="nav-item" title="Configurações" onclick="window.location.href='editarIncidente.html'">
+        <i data-lucide="edit"></i>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-item" title="Perfil" onclick="window.location.href='perfil.html'">
+        <i data-lucide="user"></i>
+      </div>
+    </div>
+  </aside>
+
+
+  <main class="main-content">
+    <header class="header">
       <h1>Gerir Notificações</h1>
     </header>
 
@@ -39,5 +65,10 @@
       </article>
     </section>
   </main>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>

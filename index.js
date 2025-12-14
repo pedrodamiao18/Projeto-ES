@@ -18,12 +18,15 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB conectado"))
   .catch((err) => console.log(err));
 
-// Página inicial
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// Iniciar servidor
+// Rotas
+const incidentesRouter = require('./Routes/incidentes');
+app.use('/api/incidentes', incidentesRouter);
+
+
 app.listen(PORT, () => {
   console.log(`Servidor a correr em http://localhost:${PORT}`);
 });

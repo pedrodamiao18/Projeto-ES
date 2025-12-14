@@ -20,4 +20,4 @@ function isAdministrador (req, res, next){
     return res.status(403).json({erro: "Acesso permitido apenas a administradores"})
 }
 
-module.exports = { isCliente, isTecnico, isGestorOperacoes };
+module.exports = { isCliente, isTecnico, isAdministrador };
