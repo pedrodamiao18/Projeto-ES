@@ -6,13 +6,9 @@ const app = express();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT;
 
-const authRoutes = require('./Routes/auth');
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(express.json());
-
-app.use('/auth', authRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB conectado"))
@@ -23,6 +19,9 @@ app.get('/', (req, res) => {
 });
 
 // Rotas
+const authRoutes = require('./Routes/auth');
+app.use('/auth', authRoutes);
+
 const incidentesRouter = require('./Routes/incidentes');
 app.use('/api/incidentes', incidentesRouter);
 

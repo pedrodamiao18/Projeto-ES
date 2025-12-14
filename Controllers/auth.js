@@ -13,7 +13,7 @@ exports.login = async (req, res) => {
         }
 
         //definir método para comparar no modelo do User
-        const isMatch = await user.comparePassword(password);
+        const isMatch = await user.isValidPassword(password);
         if (!isMatch) {
             return res.status(400).json({ error: 'Credenciais inválidas!' });
         }
