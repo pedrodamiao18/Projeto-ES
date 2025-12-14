@@ -19,7 +19,7 @@ exports.login = async (req, res) => {
 
         // Geração de token
         const token = jwt.sign(
-            { id: user._id, username: user.email, role: user.role },
+            { id: user._id, email: user.email, role: user.role },
             secretKey,
             { expiresIn: '24h' }
         );
