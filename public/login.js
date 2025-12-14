@@ -1,4 +1,4 @@
-const url="http://localhost:4000/auth";
+const url=process.env.URL + "auth";
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -23,10 +23,12 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            //o servidor manda o token numa cookie httpOnly
+            //dar um alerta do sucesso ao cliente
             alert('Login com sucesso');
             window.location.href = "incidentes.html";
         } else {
-            alert('Login failed: ' + data.message);
+            alert('O login falhou: ' + data.message);
         }
     })
     .catch(error => {
@@ -34,3 +36,13 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         alert('Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.');
     });
 });
+
+function isLoggedIn(){
+    fetch(url + '/check')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "incidentes.html";
+        }
+    })
+}

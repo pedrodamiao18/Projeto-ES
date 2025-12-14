@@ -9,13 +9,12 @@ exports.login = async (req, res) => {
     try {
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ error: 'Credenciais inválidas!' });
+            return res.status(400).json({ error: 'Email inválido!' });
         }
 
-        //definir método para comparar no modelo do User
         const isMatch = await user.isValidPassword(password);
         if (!isMatch) {
-            return res.status(400).json({ error: 'Credenciais inválidas!' });
+            return res.status(400).json({ error: 'Password inválida!' });
         }
 
         // Geração de token
@@ -25,7 +24,15 @@ exports.login = async (req, res) => {
             { expiresIn: '24h' }
         );
 
-        res.json({ success: true, accessToken: token });
+        res.cookie('token', token, {
+            //impede que o javascript possa aceder ao cookie
+            httpOnly: true,
+            //secure: true,
+            //só enviamos o cookie para o servidos se a conexão for https
+            maxAge: 24 * 60 * 60 * 1000 //24 horas
+        })
+
+        res.json({ success: true, message: "Login com sucesso." });
     } catch (err) {
         res.status(500).json({ error: 'Erro no servidor!' });
     }
@@ -34,3 +41,14 @@ exports.login = async (req, res) => {
 exports.registo = (req, res) => {
     console.log("Tentativa de registo:", req.body);
 };
+
+//esconder o formulario login e fazer aparecer cena de "a carregar"
+// e depois mudar conforme esteja ou nao autenticado
+exports.isLoggedIn = (req, res) => {
+   //só passa pelo middleware se estiver autenticado
+    
+    res.status(200).json({
+        isLoggedIn: true,
+        user: req.user 
+    });
+}
