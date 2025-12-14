@@ -1,17 +1,16 @@
 const mongoose = require("mongoose");
-import bcrypt from 'bcrypt';
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  name: { type: String, required: true, unique: true },
   password: { type: String, required: true, select: false }, // select: false para não retornar a password 
   role: { type: String, required: true}, // ex: "cliente", "tecnico", "admin"
   email: { type: String, required: true, unique: true },
 });
 
-userSchema.pre('save',  async function(next) {
+userSchema.pre('save',  async function() {
   //  lógica para converter em hash a password antes de guardar
-  this.password= awaitbcrypt.hash(this.password,10);
-  next();
+  this.password= await bcrypt.hash(this.password,10);
 });
 
 //comparar password no login

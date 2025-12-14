@@ -1,4 +1,8 @@
-const url=process.env.URL + "auth";
+const url = "http://localhost:4000/auth";
+
+document.addEventListener('DOMContentLoaded', function () {
+   isLoggedIn();
+});
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -38,7 +42,9 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 });
 
 function isLoggedIn(){
-    fetch(url + '/check')
+    fetch(url + '/check', {
+        credentials: 'include' 
+    })
     .then(response => response.json())
     .then(data => {
         if (data.success) {

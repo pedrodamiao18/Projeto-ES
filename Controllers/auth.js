@@ -7,7 +7,7 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).select('+password');
         if (!user) {
             return res.status(400).json({ error: 'Email inválido!' });
         }
@@ -39,16 +39,40 @@ exports.login = async (req, res) => {
 };
 
 exports.registo = (req, res) => {
-    console.log("Tentativa de registo:", req.body);
+    const { nome, email, password } = req.body;
+
+    const newUser = new User({
+        name: nome,
+        email: email,
+        password: password,
+        role: "cliente"
+    });
+
+    newUser.save()
+        .then(() => {
+            console.log("Registo realizado com sucesso!");
+
+            res.status(201).json({
+                success: true,
+                message: "Registo efetuado com sucesso!",
+            });
+        })
+        .catch((err) => {
+            console.error("Erro ao criar novo utilizador:", err);
+
+            res.status(500).json({
+                error: 'Erro no servidor ou dados inválidos!'
+            });
+        });
 };
 
 //esconder o formulario login e fazer aparecer cena de "a carregar"
 // e depois mudar conforme esteja ou nao autenticado
 exports.isLoggedIn = (req, res) => {
-   //só passa pelo middleware se estiver autenticado
-    
+    //só passa pelo middleware se estiver autenticado
+
     res.status(200).json({
         isLoggedIn: true,
-        user: req.user 
+        user: req.user
     });
 }

@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 const mongoose = require("mongoose");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT;
 
 app.use(express.static(path.join(__dirname, 'public')));
