@@ -1,0 +1,6 @@
+# Ficheiro de nix shell
+*.nix
+
+# env files
+# .env
+

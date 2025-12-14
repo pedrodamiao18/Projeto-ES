@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Incidente = require('../Models/Incidente');
+const verifyJwt = require('../Middleware/auth').verifyJwt;
 
 // Criar novo incidente
-router.post('/', async (req, res) => {
+router.post('/', verifyJwt, async (req, res) => {
   try {
     const incidente = new Incidente(req.body);
     await incidente.save();
@@ -16,7 +17,7 @@ router.post('/', async (req, res) => {
 
 
 // GET - buscar todos os incidentes
-router.get('/', async (req, res) => {
+router.get('/', verifyJwt, async (req, res) => {
   try {
     const {estado} = req.query;
     const filtros = estado ? { estado } : {};
