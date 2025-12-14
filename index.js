@@ -6,17 +6,17 @@ const app = express();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT;
 
+const authRoutes = require('./Routes/auth');
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(cors());
-
 app.use(express.json());
+
+app.use('/auth', authRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB conectado"))
   .catch((err) => console.log(err));
-
 
 // Página inicial
 app.get('/', (req, res) => {
