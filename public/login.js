@@ -47,7 +47,7 @@ function isLoggedIn(){
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
+        if (data.isLoggedIn) {
             window.location.href = "incidentes.html";
         }
     })

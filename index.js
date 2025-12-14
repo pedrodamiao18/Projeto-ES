@@ -8,7 +8,10 @@ const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT;
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  origin: 'http://localhost:4000'
+}));
 app.use(express.json());
 app.use(cookieParser());
 
