@@ -147,14 +147,58 @@ body {
 }
 
 .aberto {
-  background: #ee0b0b;
+  background: #eaee0b;
   color: #03320c;
 }
 .resolvido {
   background: #5aee0b;
   color: #03320c;
 }
-.progresso {
-  background: #eaee0b;
+.por-iniciar {
+  background:#ee0b0b; 
   color: #03320c;
 }
+
+.row {
+  cursor: pointer;
+}
+
+.row:hover {
+  background: rgba(82, 154, 96, 0.1);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.estado-header {
+  position: relative;
+  cursor: pointer;
+}
+
+.estado-dropdown {
+  position: absolute;
+  top: 130%;
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  min-width: 140px;
+  z-index: 20;
+}
+
+.estado-dropdown div {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.estado-dropdown div:hover {
+  background: rgba(82, 154, 96, 0.15);
+}
+
+

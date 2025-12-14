@@ -1,20 +1,32 @@
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
+  carregarIncidentes(); 
+});
+async function carregarIncidentes(estado = '') {
   const tabela = document.querySelector('.table');
 
   try {
-    const res = await fetch('/api/incidentes');
+    const url = estado
+      ? `/api/incidentes?estado=${encodeURIComponent(estado)}`: '/api/incidentes';
+
+    const res = await fetch(url);
     const incidentes = await res.json();
 
     tabela.innerHTML = '';
 
-    incidentes.forEach(incidentes => {
+    incidentes.forEach(incidente => {
       const row = document.createElement('div');
       row.classList.add('row');
 
       row.innerHTML = `
-        <span>${incidentes.descricao}</span>
-        <span class="status ${getStatusClass(incidentes.estado)}">${incidentes.estado}</span>
+        <span>${incidente.tipoIncidente}</span>
+        <span class="status ${getStatusClass(incidente.estado)}">
+          ${incidente.estado}
+        </span>
       `;
+
+      row.addEventListener('click', () => {
+        window.location.href = `/incidente.html?id=${incidente._id}`;
+      });
 
       tabela.appendChild(row);
     });
@@ -22,13 +34,39 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (err) {
     console.error('Erro ao carregar incidentes:', err);
   }
-});
-
+}
 function getStatusClass(estado) {
   switch (estado.toLowerCase()) {
     case 'aberto': return 'aberto';
-    case 'em progresso': return 'progresso';
+    case 'por iniciar': return 'por-iniciar';
     case 'resolvido': return 'resolvido';
     default: return '';
   }
 }
+const estadoHeader = document.getElementById('estadoHeader');
+const estadoDropdown = document.getElementById('estadoDropdown');
+
+estadoHeader.addEventListener('click', (e) => {
+  e.stopPropagation();
+  estadoDropdown.style.display =
+    estadoDropdown.style.display === 'flex' ? 'none' : 'flex';
+});
+
+document.addEventListener('click', () => {
+  estadoDropdown.style.display = 'none';
+});
+
+estadoDropdown.querySelectorAll('div').forEach(opcao => {
+  opcao.addEventListener('click', () => {
+    const estado = opcao.dataset.estado;
+
+    if (estado === 'todos') {
+      carregarIncidentes();//carrega todos
+    } else {
+      carregarIncidentes(estado);//carrega os necessários
+    }
+
+    estadoDropdown.style.display = 'none';
+  });
+});
+
