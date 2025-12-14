@@ -42,7 +42,16 @@
     <div class="table-container">
       <div class="table-header">
         <span>Nome</span>
-        <span>Estado</span>
+      <div class="estado-header">
+        <span id="estadoHeader">Estado ▾</span>
+
+        <div id="estadoDropdown" class="estado-dropdown">
+          <div data-estado="todos">Todos</div>
+          <div data-estado="Por iniciar">Por Iniciar</div>
+          <div data-estado="Aberto">Aberto</div>
+          <div data-estado="Resolvido">Resolvido</div>
+    </div>
+  </div>
       </div>
 
       <div class="table">
@@ -56,7 +65,7 @@
         </div>
         <div class="row">
           <span>Problema de acesso</span>
-          <span class="status progresso">Em progresso</span>
+          <span class="status por-iniciar">Por Iniciar</span>
         </div>
       </div>
     </div>

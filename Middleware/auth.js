@@ -13,7 +13,7 @@ const verifyJwt = (req, res, next) => {
             console.log("Erro de autenticação", err);
             return res.status(401).json({error: "Token inválido"});
         }
-        req.user = decoded;
+        req.user = decoded; 
         next();
     });
 };

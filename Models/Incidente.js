@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const incidenteSchema = new mongoose.Schema({
   id_cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'User',default: null },
   id_tecnico: { type: mongoose.Schema.Types.ObjectId, ref: 'User',default: null },
-  estado: { type: String, enum: ['Por iniciar', 'Em progresso', 'Resolvido'],
+  estado: { type: String, enum: ['Por iniciar', 'Aberto', 'Resolvido'],
   default: 'Por iniciar'},
   descricao: { type: String, required: true },
   data: { type: Date, default: Date.now },
