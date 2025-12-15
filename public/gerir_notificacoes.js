@@ -1,10 +1,14 @@
 let notificacaoSelecionada = null;
 let filtroNotificacoes = 'false';
+let roleAtual = null;
+let notificacoesEndpoint = '/notificacoes';
 
 async function carregarNotificacoes(lida = filtroNotificacoes) {
   filtroNotificacoes = String(lida);
+  
+  const url=`${notificacoesEndpoint}?lida=${encodeURIComponent(filtroNotificacoes)}`;
   try {
-    const res = await fetch(`/notificacoes?lida=${filtroNotificacoes}`, {
+    const res = await fetch(url, {
       credentials: "include"
     });
 
@@ -33,6 +37,10 @@ async function carregarNotificacoes(lida = filtroNotificacoes) {
         return;
       }
 
+      const tecnicoInfo = roleAtual === 'admin' && notificacao.id_tecnico
+        ? `<p class="tecnico-info">Técnico: ${notificacao.id_tecnico.name || notificacao.id_tecnico.email}</p>`
+        : '';
+
       const card = document.createElement("article");
       card.className = "notificacao";
 
@@ -40,6 +48,7 @@ async function carregarNotificacoes(lida = filtroNotificacoes) {
         <div>
           <h3>${incidente.nome}</h3>
           <p>${incidente.descricao}</p>
+          ${tecnicoInfo}
         </div>
         <div class="acoes">
           <button type="button" data-id="${notificacao._id}">Detalhes</button>
@@ -98,6 +107,11 @@ function formatarData(dataIso) {
 }
 
 async function aceitarNotificacao() {
+  if (roleAtual === 'admin') {
+    alert("Apenas técnicos podem aceitar incidentes.");
+    return;
+  }
+
   if (!notificacaoSelecionada) {
     return;
   }
@@ -155,7 +169,49 @@ async function logoutRapido() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+async function obterRoleAtual() {
+  try {
+    const res = await fetch('/auth/check', { credentials: 'include' });
+    if (!res.ok) {
+      return null;
+    }
+    const data = await res.json();
+    roleAtual = data?.user?.role || null;
+    if (roleAtual === 'admin') {
+      notificacoesEndpoint = '/admin/notificacoes';
+    }
+    return roleAtual;
+  } catch (err) {
+    console.error('Erro ao verificar o utilizador autenticado.', err);
+    return null;
+  }
+}
+
+function prepararInterfaceSomenteLeitura() {
+  const modalAcoes = document.querySelector(".modal-acoes");
+  const selectPrioridade = document.getElementById("modalPrioridade");
+  const botaoAceitar = document.getElementById("modalAceitar");
+
+  if (selectPrioridade) {
+    selectPrioridade.disabled = true;
+  }
+
+  if (botaoAceitar) {
+    botaoAceitar.disabled = true;
+    botaoAceitar.style.display = "none";
+  }
+
+  if (modalAcoes && !modalAcoes.querySelector(".info-admin")) {
+    const aviso = document.createElement("p");
+    aviso.className = "info-admin";
+    aviso.textContent = "Administradores apenas podem consultar notificações dos técnicos.";
+    modalAcoes.appendChild(aviso);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await obterRoleAtual();
+
   const filtroButtons = document.querySelectorAll(".filtros button");
 
   filtroButtons.forEach((button) => {
@@ -168,7 +224,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   carregarNotificacoes('false');
 
-  document.getElementById("modalAceitar").addEventListener("click", aceitarNotificacao);
+  if (roleAtual === 'admin') {
+    prepararInterfaceSomenteLeitura();
+  } else {
+    document.getElementById("modalAceitar").addEventListener("click", aceitarNotificacao);
+  }
+
   document.getElementById("fecharModal").addEventListener("click", fecharModal);
   document.getElementById("detalhesModal").addEventListener("click", (event) => {
     if (event.target.id === "detalhesModal") {

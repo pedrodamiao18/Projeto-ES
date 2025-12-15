@@ -13,6 +13,8 @@ router.get('/disponiveis', verifyJwt, async (req, res) => {
   const incidentes = await Incidente.find({ id_tecnico: null });
   res.json(incidentes);
 });
+
+
 // incidentes atribuídos ao técnico autenticado
 router.get('/meus', verifyJwt, async (req, res) => {
   try {
@@ -79,6 +81,7 @@ router.post('/aceitar', verifyJwt, async (req, res) => {
     res.status(500).json({ message: 'Erro ao aceitar incidente' });
   }
 });
+
 // alterar estado do incidente
 router.put('/estado/:id', verifyJwt, async (req, res) => {
   try {
@@ -96,7 +99,7 @@ router.put('/estado/:id', verifyJwt, async (req, res) => {
     const incidente = await Incidente.findOneAndUpdate(
       {
         _id: req.params.id,
-        id_tecnico: req.user.id   //só o técnico responsável
+        id_tecnico: req.user.id //só o técnico responsável
       },
       { estado },
       { new: true }

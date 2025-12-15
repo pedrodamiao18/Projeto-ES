@@ -67,13 +67,20 @@
         const s = document.createElement('script');
         s.src = 'incidentes_tecnico.js';
         document.body.appendChild(s);
-      } else {
+      } else if (data.user.role === 'admin') {
+        const s = document.createElement('script');
+        s.src = 'admin.js';
+        s.onload = () => {
+        iniciarIncidentesAdmin();
+      };
+
+        document.body.appendChild(s);
+      }else{
         const s = document.createElement('script');
         s.src = 'incidentes.js';
         s.onload = () => {
-        iniciarIncidentes();
-      };
-
+          iniciarIncidentes();
+        };
         document.body.appendChild(s);
       }
     });

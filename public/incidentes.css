@@ -167,6 +167,14 @@ body {
   background: rgba(82, 154, 96, 0.1);
 }
 
+.row.no-click {
+  cursor: default;
+}
+
+.row.no-click:hover {
+  background: transparent;
+}
+
 .table-header {
   display: flex;
   justify-content: space-between;
@@ -200,5 +208,4 @@ body {
 .estado-dropdown div:hover {
   background: rgba(82, 154, 96, 0.15);
 }
-
 

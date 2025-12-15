@@ -160,6 +160,12 @@ body {
   font-weight: 500;
 }
 
+.tecnico-info {
+  font-size: 0.9vw;
+  color: #295c35;
+  margin-top: 6px;
+}
+
 .notificacao button {
   background: rgba(82, 154, 96, 0.61);
   border: none;
@@ -255,4 +261,12 @@ body {
 
 .modal-acoes button:hover {
   opacity: 0.9;
+}
+
+.info-admin {
+  font-size: 0.95rem;
+  color: #03320c;
+  background: rgba(82, 154, 96, 0.1);
+  border-radius: 8px;
+  padding: 10px 12px;
 }

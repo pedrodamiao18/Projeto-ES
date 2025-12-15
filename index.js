@@ -36,6 +36,9 @@ app.use('/notificacoes', notificacoesRoutes);
 const incidentesTecnicoRoutes = require('./Routes/incidentes_tecnico');
 app.use('/incidentes-tecnico', incidentesTecnicoRoutes);
 
+const adminRoutes = require('./Routes/admin');
+app.use('/admin', adminRoutes);
+
 app.listen(PORT, () => {
   console.log(`Servidor a correr em http://localhost:${PORT}`);
 });
