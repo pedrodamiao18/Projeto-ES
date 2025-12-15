@@ -9,24 +9,22 @@ document.addEventListener("DOMContentLoaded", function() {
     function checkStatus() {
         const val = statusSelect.value;
 
-        // 2. Reset everything to hidden first (Clean slate)
         fileWrapper.style.display = "none";
         causeWrapper.style.display = "none";
         reasonWrapper.style.display = "none";
 
-        // 3. Apply logic based on selection
         if (val === "resolvido") {
-            fileWrapper.style.display = "flex";  // Show File
-            causeWrapper.style.display = "flex"; // Show Cause
+            fileWrapper.style.display = "flex";
+            causeWrapper.style.display = "flex";
         } 
         else if (val === "nao_resolvido") {
-            reasonWrapper.style.display = "flex"; // Show Reason
+            reasonWrapper.style.display = "flex";
         }
     }
 
     if (statusSelect) {
         statusSelect.addEventListener("change", checkStatus);
-        checkStatus(); // Check immediately on load
+        checkStatus();
     }
 
 });
