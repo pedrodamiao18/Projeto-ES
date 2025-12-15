@@ -1,8 +1,10 @@
 let notificacaoSelecionada = null;
+let filtroNotificacoes = 'false';
 
-async function carregarNotificacoes() {
+async function carregarNotificacoes(lida = filtroNotificacoes) {
+  filtroNotificacoes = String(lida);
   try {
-    const res = await fetch("/notificacoes", {
+    const res = await fetch(`/notificacoes?lida=${filtroNotificacoes}`, {
       credentials: "include"
     });
 
@@ -17,7 +19,9 @@ async function carregarNotificacoes() {
     if (!notificacoes.length) {
       const vazio = document.createElement("div");
       vazio.className = "estado-vazio";
-      vazio.textContent = "Sem notificações novas.";
+      vazio.textContent = filtroNotificacoes === 'true'
+        ? "Sem notificações lidas."
+        : "Sem notificações novas.";
       container.appendChild(vazio);
       return;
     }
@@ -126,15 +130,43 @@ async function aceitarNotificacao() {
 
     alert(body.message || "Incidente aceite com sucesso");
     fecharModal();
-    carregarNotificacoes();
+    carregarNotificacoes(filtroNotificacoes);
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 }
 
+async function logoutRapido() {
+  try {
+    const res = await fetch("/auth/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+
+    if (!res.ok) {
+      throw new Error("Não foi possível terminar sessão.");
+    }
+
+    window.location.href = "login.html";
+  } catch (err) {
+    console.error("Erro no logout:", err);
+    alert("Não foi possível terminar sessão automaticamente. Tente novamente.");
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  carregarNotificacoes();
+  const filtroButtons = document.querySelectorAll(".filtros button");
+
+  filtroButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filtroButtons.forEach((btn) => btn.classList.remove("ativo"));
+      button.classList.add("ativo");
+      carregarNotificacoes(button.dataset.lida ?? 'false');
+    });
+  });
+
+  carregarNotificacoes('false');
 
   document.getElementById("modalAceitar").addEventListener("click", aceitarNotificacao);
   document.getElementById("fecharModal").addEventListener("click", fecharModal);
@@ -143,4 +175,9 @@ document.addEventListener("DOMContentLoaded", () => {
       fecharModal();
     }
   });
+
+  const logoutButton = document.getElementById("logoutButton");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", logoutRapido);
+  }
 });

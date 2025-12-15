@@ -1,6 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
+function iniciarPaginaTecnico() {
   carregarIncidentesTecnico();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', iniciarPaginaTecnico);
+} else {
+  iniciarPaginaTecnico();
+}
 
 async function carregarIncidentesTecnico() {
   const tabela = document.querySelector('.table');

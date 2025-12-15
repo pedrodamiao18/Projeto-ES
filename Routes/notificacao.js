@@ -9,10 +9,16 @@ router.get('/', verifyJwt, async (req, res) => {
       return res.status(403).json({ message: 'Acesso negado' });
     }
 
-    const notificacoes = await Notificacao.find({
-      id_tecnico: req.user.id,
-      lida: false
-    }).populate('id_incidente');
+    const { lida } = req.query;
+    const filtros = { id_tecnico: req.user.id };
+
+    if (lida === 'true') {
+      filtros.lida = true;
+    } else if (lida === 'false' || typeof lida === 'undefined') {
+      filtros.lida = false;
+    }
+
+    const notificacoes = await Notificacao.find(filtros).populate('id_incidente');
 
     res.json(notificacoes);
   } catch (err) {

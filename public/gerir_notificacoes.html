@@ -36,11 +36,14 @@
   <main class="main-content">
     <header class="header">
       <h1>Gerir Notificações</h1>
+      <button id="logoutButton" type="button" class="logout-button" aria-label="Terminar sessão">
+        Terminar sessão
+      </button>
     </header>
 
-    <div class="filtros">
-      <button class="ativo">Não lidas</button>
-      <button>Lidas</button>
+    <div class="filtros" role="tablist">
+      <button class="ativo" data-lida="false" type="button">Não lidas</button>
+      <button data-lida="true" type="button">Lidas</button>
     </div>
 
     <section class="lista-notificacoes" id="listaNotificacoes"></section>

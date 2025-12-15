@@ -85,8 +85,4 @@ router.put('/:id', verifyJwt, async (req, res) => {
   res.json(incidente);
 });
 
-
-
-
-
 module.exports = router;

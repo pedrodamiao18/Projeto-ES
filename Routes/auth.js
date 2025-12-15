@@ -7,4 +7,5 @@ const verifyJwt = require('../Middleware/auth').verifyJwt;
 router.post('/login', authController.login);
 router.post('/registo', authController.registo);
 router.get('/check', verifyJwt, authController.isLoggedIn);
+router.post('/logout', authController.logout);
 module.exports = router;
