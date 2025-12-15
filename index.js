@@ -30,6 +30,11 @@ app.use('/auth', authRoutes);
 const incidentesRouter = require('./Routes/incidentes');
 app.use('/api/incidentes', incidentesRouter);
 
+const notificacoesRoutes = require('./Routes/notificacao');
+app.use('/notificacoes', notificacoesRoutes);
+
+const incidentesTecnicoRoutes = require('./Routes/incidentes_tecnico');
+app.use('/incidentes-tecnico', incidentesTecnicoRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor a correr em http://localhost:${PORT}`);

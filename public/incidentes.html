@@ -55,22 +55,30 @@
       </div>
 
       <div class="table">
-        <div class="row">
-          <span>Erro no login</span>
-          <span class="status aberto">Aberto</span>
-        </div>
-        <div class="row">
-          <span>Falha de rede</span>
-          <span class="status resolvido">Resolvido</span>
-        </div>
-        <div class="row">
-          <span>Problema de acesso</span>
-          <span class="status por-iniciar">Por Iniciar</span>
-        </div>
+        
       </div>
     </div>
   </div>
-  <script src="incidentes.js"></script>
+  <script>
+  fetch('/auth/check', { credentials: 'include' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.user.role === 'tecnico') {
+        const s = document.createElement('script');
+        s.src = 'incidentes_tecnico.js';
+        document.body.appendChild(s);
+      } else {
+        const s = document.createElement('script');
+        s.src = 'incidentes.js';
+        s.onload = () => {
+        iniciarIncidentes();
+      };
+
+        document.body.appendChild(s);
+      }
+    });
+</script>
+
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>

@@ -1,6 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-  carregarIncidentes(); 
-});
+async function iniciarIncidentes() {
+  carregarIncidentes(); // default: todos do cliente autenticado
+}
+
 async function carregarIncidentes(estado = '') {
   const tabela = document.querySelector('.table');
 

@@ -115,6 +115,17 @@ body {
   align-items: center;
 }
 
+.lista-notificacoes .estado-vazio {
+  width: 90%;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  text-align: center;
+  padding: 30px;
+  color: #03320c;
+  font-size: 1vw;
+  font-weight: 500;
+}
+
 .notificacao {
   width: 90%;
   background: white;
@@ -146,4 +157,85 @@ body {
 
 .notificacao button:hover {
   background: rgba(82, 154, 96, 0.8);
+}
+
+.notificacao .acoes {
+  display: flex;
+  gap: 10px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.ativo {
+  display: flex;
+}
+
+.modal-content {
+  width: min(520px, 90%);
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #03320c;
+}
+
+.modal-body h2 {
+  margin-bottom: 10px;
+  color: #03320c;
+}
+
+.modal-body ul {
+  list-style: none;
+  margin-top: 10px;
+  color: #03320c;
+  line-height: 1.4;
+}
+
+.modal-acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-acoes select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal-acoes button {
+  align-self: flex-end;
+  background: #529a60;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-acoes button:hover {
+  opacity: 0.9;
 }

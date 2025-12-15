@@ -2,12 +2,31 @@ const express = require('express');
 const router = express.Router();
 const Incidente = require('../Models/Incidente');
 const verifyJwt = require('../Middleware/auth').verifyJwt;
+const Notificacao = require('../Models/Notificacao');
+const User = require('../Models/User');
 
 // Criar novo incidente
 router.post('/', verifyJwt, async (req, res) => {
   try {
+    if (req.user.role !== 'cliente') {
+      return res.status(403).json({ message: 'Acesso negado' });
+    }
     const incidente = new Incidente({ ...req.body, id_cliente: req.user.id });
     await incidente.save();
+
+    // Criar notificações para todos os técnicos disponíveis
+    const tecnicos = await User.find({ role: 'tecnico' }).select('_id');
+
+    if (tecnicos.length > 0) {
+      const notificacoes = tecnicos.map((tecnico) => ({
+        id_incidente: incidente._id,
+        id_tecnico: tecnico._id,
+        mensagem: `Novo incidente registado: ${incidente.nome}`
+      }));
+
+      await Notificacao.insertMany(notificacoes);
+    }
+
     res.status(201).json({ message: 'Incidente registado com sucesso!' });
   } catch (err) {
     console.error(err);
