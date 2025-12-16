@@ -1,0 +1,176 @@
+/* Reset basic margins */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'SF Pro', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #e8f8e5; /* Cor de backup caso a imagem falhe */
+}
+
+/* --- 1. CONFIGURAÇÃO GERAL E FUNDO --- */
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;       /* Flexbox para colocar Sidebar ao lado do Conteúdo */
+    justify-content: flex-start; /* Alinhamento inicial à esquerda */
+    align-items: stretch;     
+}
+
+.background-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; /* Fica no fundo de tudo */
+}
+
+/* --- 2. SIDEBAR (Vinda do outro HTML) --- */
+.sidebar {
+    width: 80px;
+    background: rgba(82, 154, 96, 0.85); /* Aumentei um pouco a opacidade para legibilidade */
+    backdrop-filter: blur(5px); /* Adicionado efeito de vidro para combinar */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    z-index: 20; /* IMPORTANTE: Fica acima da imagem de fundo */
+    position: relative; /* Para respeitar o flex container */
+}
+
+.nav-item {
+    color: #03320c;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.nav-item:hover {
+    background: rgba(82, 154, 96, 0.5);
+    opacity: 1;
+}
+
+.nav-item.active {
+    background: #529a60; /* Verde mais forte */
+    color: white;
+    opacity: 1;
+}
+
+.nav-item i {
+    width: 22px;
+    height: 22px;
+}
+
+/* --- 3. WRAPPER DE CONTEÚDO (Novo) --- */
+/* Isto ocupa o espaço restante e centra o cartão */
+.content-wrapper {
+    flex: 1; /* Ocupa todo o espaço que sobra além dos 80px da sidebar */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    position: relative;
+    z-index: 10; /* Fica acima da imagem, abaixo da sidebar se sobrepuser */
+}
+
+/* --- 4. O TEU CARTÃO DE PERFIL --- */
+.profile-card {
+    width: 713px;
+    padding: 50px 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-text {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.name-text {
+    color: black;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.position-text {
+    color: #A0A1A2;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* --- 5. STYLING THE DATA ROWS --- */
+.info-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.data-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    color: #333;
+}
+
+.data-text {
+    font-size: 18px;
+    color: #1E1E1E;
+    font-weight: 500;
+}
+
+.separator {
+    height: 1px;
+    background-color: #E6E6E6;
+    width: 100%;
+    margin: 5px 0;
+}
