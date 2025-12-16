@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await res.json();
 
     if (!data.isLoggedIn) {
-      window.location.href = 'login.html';
+      window.location.href = '/autenticacao/login.html';
       return;
     }
 
@@ -43,5 +43,5 @@ document.getElementById('logout').addEventListener('click', async () => {
     credentials: 'include'
   });
 
-  window.location.href = 'login.html';
+  window.location.href = '/autenticacao/login.html';
 });

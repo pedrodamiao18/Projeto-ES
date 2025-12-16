@@ -7,7 +7,7 @@ if (!incidenteId) {
 document.addEventListener('DOMContentLoaded', async () => {
   if (!incidenteId) return;
   const curtoId = incidenteId.slice(-4);
-document.getElementById('incidenteIdTitulo').textContent = `#${curtoId}`;
+  document.getElementById('incidenteIdTitulo').textContent = `#${curtoId}`;
 
 
   try {
@@ -15,7 +15,7 @@ document.getElementById('incidenteIdTitulo').textContent = `#${curtoId}`;
     const incidente = await res.json();
 
     // Campos editáveis
-   
+
     document.getElementById('data').value = incidente.data?.slice(0, 10);
     document.getElementById('descricao').value = incidente.descricao;
     document.getElementById('categoria').value = incidente.categoria;
