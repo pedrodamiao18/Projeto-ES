@@ -8,13 +8,12 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
   credentials: true,
   origin: 'http://localhost:4000'
 }));
-app.use(express.json());
+app.use(express.json({limit: '100mb'})); //máx da payload aumentado para 100mb para receber pdfs até ~75mb
 app.use(cookieParser());
 
 
