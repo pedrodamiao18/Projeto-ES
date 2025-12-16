@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const incidenteSchema = new mongoose.Schema({
   id_cliente: { type: mongoose.Schema.Types.ObjectId, required: true},
-  id_tecnico: { type: mongoose.Schema.Types.ObjectId, default: null },
+  id_tecnico: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    default: null
+  },
   prioridade: { type: String, enum: ['Baixa', 'Media', 'Alta', 'Urgente'], default: null },
   estado: { type: String, enum: ['Por iniciar', 'Aberto', 'Resolvido'],
   default: 'Por iniciar'},

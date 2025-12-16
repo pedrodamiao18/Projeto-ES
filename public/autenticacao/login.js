@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/auth";
+const url = "/auth";
 
 document.addEventListener('DOMContentLoaded', function () {
    isLoggedIn();
@@ -22,6 +22,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         headers: {
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({ email, password })
     })
     .then(response => response.json())

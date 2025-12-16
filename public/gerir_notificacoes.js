@@ -86,6 +86,8 @@ function abrirModal(notificacao) {
   const selectPrioridade = document.getElementById("modalPrioridade");
   selectPrioridade.value = incidente?.prioridade || "";
 
+  atualizarAcoesModal(notificacao);
+
   modal.classList.add("ativo");
   modal.setAttribute("aria-hidden", "false");
 }
@@ -189,23 +191,30 @@ async function obterRoleAtual() {
 
 function prepararInterfaceSomenteLeitura() {
   const modalAcoes = document.querySelector(".modal-acoes");
-  const selectPrioridade = document.getElementById("modalPrioridade");
-  const botaoAceitar = document.getElementById("modalAceitar");
-
-  if (selectPrioridade) {
-    selectPrioridade.disabled = true;
-  }
-
-  if (botaoAceitar) {
-    botaoAceitar.disabled = true;
-    botaoAceitar.style.display = "none";
-  }
-
   if (modalAcoes && !modalAcoes.querySelector(".info-admin")) {
     const aviso = document.createElement("p");
     aviso.className = "info-admin";
     aviso.textContent = "Administradores apenas podem consultar notificações dos técnicos.";
     modalAcoes.appendChild(aviso);
+  }
+}
+
+function atualizarAcoesModal(notificacao) {
+  const selectPrioridade = document.getElementById("modalPrioridade");
+  const botaoAceitar = document.getElementById("modalAceitar");
+  const somenteConsulta = roleAtual === 'admin' || Boolean(notificacao?.lida);
+
+  if (selectPrioridade) {
+    selectPrioridade.disabled = somenteConsulta;
+  }
+
+  if (botaoAceitar) {
+    botaoAceitar.disabled = somenteConsulta;
+    botaoAceitar.style.display = somenteConsulta ? "none" : "";
+  }
+
+  if (roleAtual === 'admin') {
+    prepararInterfaceSomenteLeitura();
   }
 }
 

@@ -27,7 +27,8 @@ async function carregarIncidentesAdmin(estado = '') {
       row.title = 'Apenas leitura para o administrador';
 
       row.innerHTML = `
-        <span>${incidente.categoria}</span>
+        <span>${incidente.nome || incidente.categoria}</span>
+        <span class="status prioridade">${incidente.prioridade || 'Sem prioridade'}</span>
         <span class="status ${getStatusClass(incidente.estado)}">
           ${incidente.estado}
         </span>

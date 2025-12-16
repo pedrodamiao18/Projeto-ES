@@ -19,23 +19,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 function configurarSidebar(role) {
-    const estatisticasBtn = document.querySelector(".nav-item[data-section='estatisticas']");
-    const notificacoesBtn = document.querySelector(".nav-item[data-section='notificacoes']");
-    const incidentesBtn = document.querySelector(".nav-item[data-section='incidentes']");
+    const removeSection = (section) => {
+        document
+            .querySelectorAll(`.nav-item[data-section='${section}']`)
+            .forEach((el) => el.remove());
+    };
 
-    const registarIncidenteBtn = document.querySelector(".nav-item[data-section='incidentes']");
+    const isAdmin = role === "admin";
+    const isCliente = role === "cliente";
 
-    const editarIncidentesBtn = document.querySelector(".nav-item[data-section='editar']");
-
-    if (role !== "admin") {
-        // Apenas administradores mantêm acesso às estatísticas
-        estatisticasBtn?.remove();
+    if (!isAdmin) {
+        removeSection("estatisticas");
     }
 
-    if (role !== "cliente") {
-        // Clientes também não vêm área de notificações
-        registarIncidenteBtn?.remove();
-        editarIncidentesBtn?.remove();
+    if (!isCliente) {
+        removeSection("incidentes"); // tecnicos/admin não registam incidentes
+        removeSection("editar");
+    } else {
+        removeSection("notificacoes"); // clientes deixam de gerir notificações
     }
 
+    if (role !== "tecnico") {
+        removeSection("registo-solucao");
+    }
 }
