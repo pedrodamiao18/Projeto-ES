@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Roboto, sans-serif;
-  background-image: url('imagens/backgroundBig.jpeg');
+  background-image: url('/imagens/backgroundBig.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -60,34 +60,34 @@ body {
   position: absolute;
 }
 
-.Registo {
+.Login {
   position: absolute;
-  width: 200px;
+  width: 138px;
   height: 40px;
   left: 838px;
-  top: 160px;
+  top: 181px;
   font-size: 28px;
   font-weight: 500;
   color: #03320C;
 }
 
 /* Formulário */
-.registo-form {
+.login-form {
   position: absolute;
   left: 838px;
-  top: 210px;
+  top: 250px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.registo-form label {
+.login-form label {
   font-size: 14px;
   color: #03320C;
   font-weight: 400;
 }
 
-.registo-form input {
+.login-form input {
   width: 250px;
   height: 38px;
   background: white;
@@ -99,15 +99,14 @@ body {
   outline: none;
 }
 
-.registo-form input::placeholder {
+.login-form input::placeholder {
   color: rgba(0, 0, 0, 0.42);
 }
 
-/* Botão Criar */
-.BotaoCriar {
-  margin-top: 0px;
+.BotaoEntrar {
+  margin-top: 10px;
   width: 198px;
-  height: 60px;
+  height: 60px; /* aumentado */
   align-self: center;
   background: rgba(3, 50, 12, 0.71);
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
@@ -120,24 +119,29 @@ body {
   transition: 0.2s ease;
 }
 
-.BotaoCriar:hover {
+.BotaoEntrar:hover {
   background: rgba(3, 50, 12, 0.85);
 }
 
-/* Links */
-.JaTemConta {
+.AindaNOTemConta,
+.Registar,
+.EsqueceuAPalavraPasse {
   position: absolute;
-  left: 900px;
-  top: 570px;
+  color: #0B1523;
+  font-size: 14px;
+}
+
+.AindaNOTemConta {
+  left: 860px;
+  top: 530px;
   opacity: 0.6;
   color: #0B1523;
   font-size: 14px;
 }
 
-.LoginLink {
-  position: absolute;
-  left: 995px;
-  top: 568px;
+.Registar {
+  left: 1010px;
+  top: 528px;
   opacity: 0.8;
   color: #0B1523;
   font-size: 14px;
@@ -145,6 +149,16 @@ body {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.EsqueceuAPalavraPasse {
+  left: 880px;
+  top: 555px;
+  opacity: 0.5;
+  color: #0B1523;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 
 /* SVG */
 [data-svg-wrapper],

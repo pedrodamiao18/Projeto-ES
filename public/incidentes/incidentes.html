@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incidentes</title>
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest">
+  </link>
+  <link rel="stylesheet" href="incidentes.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+  <div class="nav-section">
+    <div class="nav-item" data-section="dashboard" title="Dashboard" onclick="window.location.href='incidentes.html'">
+      <i data-lucide="layout-dashboard"></i>
+    </div>
+    <div class="nav-item" data-section="incidentes" title="Incidentes" onclick="window.location.href='registoIncidente.html'">
+      <i data-lucide="alert-triangle"></i>
+    </div>
+    <div class="nav-item" data-section="notificacoes" title="Notificações" onclick="window.location.href='/gerir_notificacoes.html'">
+      <i data-lucide="bell"></i>
+    </div>
+    <div class="nav-item" data-section="editar" title="Configurações" onclick="window.location.href='editarIncidente.html'">
+      <i data-lucide="edit"></i>
+    </div>
+    <div class="nav-item" data-section="estatisticas" title="Estatísticas" onclick="window.location.href='/estatisticas.html'">
+      <i data-lucide="bar-chart-3"></i>
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-item" data-section="perfil" title="Perfil" onclick="window.location.href='/perfil/perfil.html'">
+      <i data-lucide="user"></i>
+    </div>
+  </div>
+</aside>
+
+  <div class="main-content">
+    <div class="header">
+      <h1>Incidentes</h1>
+    </div>
+
+    <input type="text" class="search-bar" placeholder="🔍 Pesquisar incidente...">
+
+    <div class="table-container">
+      <div class="table-header">
+        <span>Nome</span>
+        <div class="estado-header">
+          <span id="estadoHeader">Estado ▾</span>
+
+          <div id="estadoDropdown" class="estado-dropdown">
+            <div data-estado="todos">Todos</div>
+            <div data-estado="Por iniciar">Por Iniciar</div>
+            <div data-estado="Aberto">Aberto</div>
+            <div data-estado="Resolvido">Resolvido</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="row">
+          <span>Erro no login</span>
+          <span class="status aberto">Aberto</span>
+        </div>
+        <div class="row">
+          <span>Falha de rede</span>
+          <span class="status resolvido">Resolvido</span>
+        </div>
+        <div class="row">
+          <span>Problema de acesso</span>
+          <span class="status por-iniciar">Por Iniciar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="incidentes.js"></script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+  <script src="/sidebar.js"></script>
+</body>
+
+</html>

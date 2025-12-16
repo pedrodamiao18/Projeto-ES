@@ -28,7 +28,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     .then(data => {
         if (data.success) {
             alert('Login com sucesso');
-            window.location.href = "incidentes.html";
+            window.location.href = "/incidentes/incidentes.html";
         } else {
             const mensagem = data.message || data.error || 'Credenciais inválidas.';
             alert('O login falhou: ' + mensagem);
@@ -47,7 +47,7 @@ function isLoggedIn(){
     .then(response => response.json())
     .then(data => {
         if (data.isLoggedIn) {
-            window.location.href = "incidentes.html";
+            window.location.href = "/incidentes/incidentes.html";
         }
     })
 }
