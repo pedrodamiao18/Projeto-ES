@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registo de Solução</title>
+  
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest">
+  <link rel="stylesheet" href="registoSolucao.css">
+</head>
+<body>
+
+<div class="main-container">
+  
+    <img class="background-img" src="imagens/backgroundBig.jpeg" alt="Background" />
+  
+    <aside class="sidebar">
+        <div class="nav-section">
+            <div class="nav-item" title="Dashboard" onclick="window.location.href='incidentes.html'">
+                <i data-lucide="layout-dashboard"></i>
+            </div>
+            <div class="nav-item active" title="Incidentes" onclick="window.location.href='registoIncidentes.html'">
+                <i data-lucide="alert-triangle"></i>
+            </div>
+            <div class="nav-item" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
+                <i data-lucide="bell"></i>
+            </div>
+            <div class="nav-item" title="Configurações" onclick="window.location.href='editarIncidente.html'">
+                <i data-lucide="edit"></i>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-item" title="Perfil" onclick="window.location.href='perfil.html'">
+                <i data-lucide="user"></i>
+            </div>
+        </div>
+    </aside>
+
+    <div class="content-wrapper">
+        
+        <div class="incident-card">
+            <div class="card-title">Solução de incidente</div>
+
+            <form class="form-container">
+        
+                <div class="form-group">
+                    <label class="form-label" for="incident-id">ID</label>
+                    <input class="form-input" type="text" id="incident-id" placeholder="Insira o ID">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="status">Estado</label>
+                    <select class="form-select" id="status" autocomplete="off">
+                        <option value="" selected disabled>Selecionar estado</option>
+                        <option value="nao_resolvido">Não Resolvido</option>
+                        <option value="resolvido">Resolvido</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="cause-wrapper" style="display: none;">
+                    <label class="form-label">Causa do Incidente</label>
+                    <textarea class="form-textarea" placeholder="Descreva o que causou o incidente..."></textarea>
+                </div>
+
+                <div class="form-group" id="reason-wrapper" style="display: none;">
+                    <label class="form-label">Motivo da não resolução</label>
+                    <textarea class="form-textarea" placeholder="Porque não foi possível resolver?"></textarea>
+                </div>
+
+                <div class="form-group" id="file-input-wrapper" style="display: none;">
+                    <label class="form-label">Relatório</label>
+                    <div class="file-upload-container">
+                        <label for="myfile" style="cursor: pointer;">Selecionar ficheiro (PDF):</label>
+                        <input type="file" accept=".pdf" id="myfile" name="myfile" style="max-width: 100%;">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Enviar</button>
+
+            </form>
+        </div>
+
+    </div> </div>
+
+<script src="registoSolucao.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
