@@ -10,6 +10,8 @@ body {
   height: 100vh;
   display: flex;
   font-family: Roboto, sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -34,6 +36,12 @@ body {
   border-radius: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
+}
+
+.nav-item--disabled {
+  opacity: 0.35 !important;
+  pointer-events: none;
+  cursor: default;
 }
 
 .nav-item:hover {

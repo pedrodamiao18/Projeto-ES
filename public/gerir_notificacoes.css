@@ -9,7 +9,8 @@ body {
   display: flex;
   background: #e8f8e5;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -34,6 +35,12 @@ body {
   border-radius: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
+}
+
+.nav-item--disabled {
+  opacity: 0.35 !important;
+  pointer-events: none;
+  cursor: default;
 }
 
 .nav-item:hover {

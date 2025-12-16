@@ -11,22 +11,22 @@
 
   <div class="sidebar">
     <div class="nav-section">
-      <div class="nav-item active" title="Dashboard" onclick="window.location.href='incidentes.html'">
+      <div class="nav-item active" data-roles="cliente,tecnico,admin" title="Dashboard" onclick="window.location.href='incidentes.html'">
         <i data-lucide="layout-dashboard"></i>
       </div>
-      <div class="nav-item" title="Incidentes" onclick="window.location.href='registoIncidente.html'">
+      <div class="nav-item" data-roles="cliente" title="Incidentes" onclick="window.location.href='registoIncidente.html'">
         <i data-lucide="alert-triangle"></i>
       </div>
-      <div class="nav-item" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
+      <div class="nav-item" data-roles="tecnico,admin" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
         <i data-lucide="bell"></i>
       </div>
-      <div class="nav-item active" title="Estatísticas" onclick="window.location.href='etatisticas.html'">
+      <div class="nav-item active" data-roles="admin" title="Estatísticas" onclick="window.location.href='estatisticas.html'">
         <i data-lucide="bar-chart-2"></i>
       </div>
     </div>
 
     <div class="nav-section">
-      <div class="nav-item" title="Perfil" onclick="window.location.href='perfil.html'">
+      <div class="nav-item" data-roles="cliente,tecnico,admin" title="Perfil" onclick="window.location.href='perfil.html'">
         <i data-lucide="user"></i>
       </div>
     </div>
@@ -87,6 +87,7 @@
 </script>
 
 
+  <script src="sidebar.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     lucide.createIcons();

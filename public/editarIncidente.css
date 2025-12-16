@@ -19,7 +19,8 @@ body {
   margin: 0;
   display: flex;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -44,6 +45,12 @@ body {
   border-radius: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
+}
+
+.nav-item--disabled {
+  opacity: 0.35 !important;
+  pointer-events: none;
+  cursor: default;
 }
 
 .nav-item:hover {
@@ -248,4 +255,3 @@ select {
   cursor: not-allowed;
   pointer-events: none;
 }
-

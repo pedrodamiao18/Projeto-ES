@@ -10,7 +10,8 @@ body {
   height: 100vh;
   font-family: Inter, sans-serif;
   display: flex;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -35,6 +36,12 @@ body {
   border-radius: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
+}
+
+.nav-item--disabled {
+  opacity: 0.35 !important;
+  pointer-events: none;
+  cursor: default;
 }
 
 .nav-item:hover {
@@ -208,4 +215,3 @@ body {
 .estado-dropdown div:hover {
   background: rgba(82, 154, 96, 0.15);
 }
-
