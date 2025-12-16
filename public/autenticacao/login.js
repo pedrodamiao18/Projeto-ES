@@ -30,7 +30,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
             //o servidor manda o token numa cookie httpOnly
             //dar um alerta do sucesso ao cliente
             alert('Login com sucesso');
-            window.location.href = "public/incidentes/incidentes.html";
+            window.location.href = "/incidentes/incidentes.html";
         } else {
             alert('O login falhou: ' + data.message);
         }
@@ -48,7 +48,7 @@ function isLoggedIn(){
     .then(response => response.json())
     .then(data => {
         if (data.isLoggedIn) {
-            window.location.href = "public/incidentes/incidentes.html";
+            window.location.href = "/incidentes/incidentes.html";
         }
     })
 }
