@@ -13,7 +13,7 @@ function isTecnico(req, res, next) {
 }
 
 function isAdministrador (req, res, next){
-    if(req.utilizador && req.utilizador.role === "administrador"){
+    if(req.utilizador && req.utilizador.role === "admin"){
         return next();
     }
 

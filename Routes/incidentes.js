@@ -54,7 +54,7 @@ router.put('/:id', verifyJwt, async (req, res) => {
   const { nome, descricao, categoria, tipoIncidente,data } = req.body;
 
    const incidente = await Incidente.findOneAndUpdate(
-      {_id: req.params.id, id_cliente: req.user.id },
+      {_id: req.params.id, id_cliente: req.utilizador.id },
       { nome, descricao, categoria, tipoIncidente, data },
       { new: true }
     );

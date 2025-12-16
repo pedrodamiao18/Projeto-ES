@@ -2,16 +2,13 @@
 <html lang="pt">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerir Notificações</title>
-  <link rel="stylesheet" href="https://unpkg.com/lucide@latest">
-  </link>
-  <link rel="stylesheet" href="gerir_notificacoes.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Estatísticas</title>
+  <link rel="stylesheet" href="estatisticas.css" />
 </head>
 
 <body>
-
   <aside class="sidebar">
     <div class="nav-section">
       <div class="nav-item" data-section="dashboard" title="Dashboard" onclick="window.location.href='incidentes.html'">
@@ -43,41 +40,39 @@
   </aside>
 
 
-
-  <main class="main-content">
-    <header class="header">
-      <h1>Gerir Notificações</h1>
-    </header>
-
-    <div class="filtros">
-      <button class="ativo">Não lidas</button>
-      <button>Lidas</button>
+  <div class="main-content"> 
+    <div class="header">
+      <h1>Estatísticas dos Incidentes</h1>
+    </div>
+    
+    <div class="statistics-cards">
+      <div class="card">
+        <h3>Total</h3>
+        <span id="total-incidentes">0</span>
+      </div>
+      <div class="card">
+        <h3>Abertos</h3>
+        <span id="abertos">0</span>
+      </div>
+      <div class="card">
+        <h3>Resolvidos</h3>
+        <span id="resolvidos">0</span>
+      </div>
+      <div class="card">
+        <h3>Por iniciar</h3>
+        <span id="por-iniciar">0</span>
+      </div>
     </div>
 
-    <section class="lista-notificacoes">
-      <article class="notificacao">
-        <p>Nova solicitação registrada.</p>
-        <button>Ver detalhes</button>
-      </article>
-
-      <article class="notificacao">
-        <p>Nova solicitação registrada.</p>
-        <button>Ver detalhes</button>
-      </article>
-
-      <article class="notificacao">
-        <p>Registro de resolução concluído.</p>
-        <button>Ver detalhes</button>
-      </article>
-
-      <article class="notificacao">
-        <p>Registro de resolução concluído.</p>
-        <button>Ver detalhes</button>
-      </article>
+    <section class="incident-chart">
+      <h3>Distribuição por estado</h3>
+      <canvas id="chartIncidentes" width="400" height="220"></canvas>
     </section>
-  </main>
+  </div>
 
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="estatisticas.js"></script>
   <script>
     lucide.createIcons();
   </script>
