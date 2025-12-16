@@ -106,6 +106,7 @@ function configurarSidebar(role) {
     if (role === "tecnico") {
         showSection("notificacoes");
         showSection("registo-solucao");
+        hideSection("incidentes");
     }
 
     if (role === "cliente") {
