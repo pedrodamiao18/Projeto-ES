@@ -14,8 +14,8 @@ const incidenteSchema = new mongoose.Schema({
   relatorioResolucao: { 
     type: String, select: false },
   observacoesTecnicas: { 
-    type: String},
-  dataResolucao: {type: Date} 
+    type: String, select: false},
+  dataResolucao: {type: Date, select: false} 
   },{
   toJSON: {virtuals: true},
   toObject: {virtuals:true}
