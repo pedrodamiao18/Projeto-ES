@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerir Notificações</title>
-  <link rel="stylesheet" href="https://unpkg.com/lucide@latest"></link>
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest">
+  </link>
   <link rel="stylesheet" href="gerir_notificacoes.css">
 </head>
+
 <body>
 
   <aside class="sidebar">
@@ -23,6 +26,10 @@
       <div class="nav-item active" data-roles="admin" title="Estatísticas" onclick="window.location.href='estatisticas.html'">
         <i data-lucide="bar-chart-2"></i>
       </div>
+      <div class="nav-item" data-section="estatisticas" title="Estatísticas"
+        onclick="window.location.href='estatisticas.html'">
+        <i data-lucide="bar-chart-3"></i>
+      </div>
     </div>
 
     <div class="nav-section">
@@ -31,6 +38,7 @@
       </div>
     </div>
   </aside>
+
 
 
   <main class="main-content">
@@ -78,5 +86,7 @@
   <script>
     lucide.createIcons();
   </script>
+  <script src="sidebar.js"></script>
 </body>
+
 </html>

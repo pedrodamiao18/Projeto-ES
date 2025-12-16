@@ -27,12 +27,11 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            //o servidor manda o token numa cookie httpOnly
-            //dar um alerta do sucesso ao cliente
             alert('Login com sucesso');
             window.location.href = "incidentes.html";
         } else {
-            alert('O login falhou: ' + data.message);
+            const mensagem = data.message || data.error || 'Credenciais inválidas.';
+            alert('O login falhou: ' + mensagem);
         }
     })
     .catch(error => {

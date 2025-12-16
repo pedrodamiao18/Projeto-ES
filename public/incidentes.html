@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Incidentes</title>
-<link rel="stylesheet" href="https://unpkg.com/lucide@latest"></link>
-<link rel="stylesheet" href="incidentes.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incidentes</title>
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest">
+  </link>
+  <link rel="stylesheet" href="incidentes.css">
 </head>
+
 <body>
 
   <div class="sidebar">
@@ -31,6 +34,7 @@
       </div>
     </div>
   </div>
+</aside>
 
   <div class="main-content">
     <div class="header">
@@ -42,16 +46,16 @@
     <div class="table-container">
       <div class="table-header">
         <span>Nome</span>
-      <div class="estado-header">
-        <span id="estadoHeader">Estado ▾</span>
+        <div class="estado-header">
+          <span id="estadoHeader">Estado ▾</span>
 
-        <div id="estadoDropdown" class="estado-dropdown">
-          <div data-estado="todos">Todos</div>
-          <div data-estado="Por iniciar">Por Iniciar</div>
-          <div data-estado="Aberto">Aberto</div>
-          <div data-estado="Resolvido">Resolvido</div>
-    </div>
-  </div>
+          <div id="estadoDropdown" class="estado-dropdown">
+            <div data-estado="todos">Todos</div>
+            <div data-estado="Por iniciar">Por Iniciar</div>
+            <div data-estado="Aberto">Aberto</div>
+            <div data-estado="Resolvido">Resolvido</div>
+          </div>
+        </div>
       </div>
 
       <div class="table">
@@ -92,6 +96,7 @@
   <script>
     lucide.createIcons();
   </script>
-
+  <script src="sidebar.js"></script>
 </body>
+
 </html>

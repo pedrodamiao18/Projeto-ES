@@ -24,7 +24,7 @@ document.getElementById('incidenteIdTitulo').textContent = `#${curtoId}`;
     // Campos bloqueados
     document.getElementById('estado').textContent = incidente.estado;
     document.getElementById('tecnico').textContent =
-      incidente.id_tecnico?.nome || 'Não atribuído';
+      incidente.id_tecnico?.name || 'Não atribuído';
 
   } catch (err) {
     console.error('Erro ao carregar incidente:', err);
@@ -70,4 +70,3 @@ function preencherTipos(categoria, tipoSelecionado) {
     });
   }
 }
-

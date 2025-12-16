@@ -2,45 +2,81 @@
 <html lang="pt">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estatísticas</title>
-  <link rel="stylesheet" href="https://unpkg.com/lucide@latest">
-  </link>
-  <link rel="stylesheet" href="estatisticas.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Estatísticas</title>
+  <link rel="stylesheet" href="estatisticas.css" />
 </head>
 
 <body>
-
-
-  <div class="sidebar">
+  <aside class="sidebar">
     <div class="nav-section">
-      <div class="nav-item" data-roles="cliente,tecnico,admin" title="Dashboard" onclick="window.location.href='incidentes.html'">
+      <div class="nav-item" data-section="dashboard" title="Dashboard" onclick="window.location.href='incidentes.html'">
         <i data-lucide="layout-dashboard"></i>
       </div>
-      <div class="nav-item active" data-roles="cliente" title="Incidentes" onclick="window.location.href='registoIncidente.html'">
+      <div class="nav-item" data-section="incidentes" title="Incidentes"
+        onclick="window.location.href='registoIncidente.html'">
         <i data-lucide="alert-triangle"></i>
       </div>
-      <div class="nav-item" data-roles="tecnico,admin" title="Notificações" onclick="window.location.href='gerir_notificacoes.html'">
+      <div class="nav-item" data-section="notificacoes" title="Notificações"
+        onclick="window.location.href='gerir_notificacoes.html'">
         <i data-lucide="bell"></i>
       </div>
-      <div class="nav-item active" data-roles="admin" title="Estatísticas" onclick="window.location.href='estatisticas.html'">
-        <i data-lucide="bar-chart-2"></i>
+      <div class="nav-item" data-section="editar" title="Configurações"
+        onclick="window.location.href='editarIncidente.html'">
+        <i data-lucide="edit"></i>
+      </div>
+      <div class="nav-item" data-section="estatisticas" title="Estatísticas"
+        onclick="window.location.href='estatisticas.html'">
+        <i data-lucide="bar-chart-3"></i>
       </div>
     </div>
 
     <div class="nav-section">
-      <div class="nav-item" data-roles="cliente,tecnico,admin" title="Perfil" onclick="window.location.href='perfil.html'">
+      <div class="nav-item" data-section="perfil" title="Perfil" onclick="window.location.href='perfil.html'">
         <i data-lucide="user"></i>
       </div>
     </div>
+  </aside>
+
+
+  <div class="main-content"> 
+    <div class="header">
+      <h1>Estatísticas dos Incidentes</h1>
+    </div>
+    
+    <div class="statistics-cards">
+      <div class="card">
+        <h3>Total</h3>
+        <span id="total-incidentes">0</span>
+      </div>
+      <div class="card">
+        <h3>Abertos</h3>
+        <span id="abertos">0</span>
+      </div>
+      <div class="card">
+        <h3>Resolvidos</h3>
+        <span id="resolvidos">0</span>
+      </div>
+      <div class="card">
+        <h3>Por iniciar</h3>
+        <span id="por-iniciar">0</span>
+      </div>
+    </div>
+
+    <section class="incident-chart">
+      <h3>Distribuição por estado</h3>
+      <canvas id="chartIncidentes" width="400" height="220"></canvas>
+    </section>
   </div>
 
-  <script src="sidebar.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="estatisticas.js"></script>
   <script>
     lucide.createIcons();
   </script>
-
+  <script src="sidebar.js"></script>
 </body>
+
 </html>
