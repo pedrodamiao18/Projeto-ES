@@ -112,6 +112,7 @@ function configurarSidebar(role) {
 
     if (role === "cliente") {
         showSection("incidentes");
+        showSection("notificacoes");
     }
 }
 

@@ -20,7 +20,8 @@ router.post('/', verifyJwt, async (req, res) => {
     if (tecnicos.length > 0) {
       const notificacoes = tecnicos.map((tecnico) => ({
         id_incidente: incidente._id,
-        id_tecnico: tecnico._id,
+        id_utilizador: tecnico._id,
+        destinatario_tipo: 'tecnico',
         mensagem: `Novo incidente registado: ${incidente.nome}`
       }));
 
@@ -38,8 +39,9 @@ router.post('/', verifyJwt, async (req, res) => {
 // GET - buscar todos os incidentes
 router.get('/', verifyJwt, async (req, res) => {
   try {
-    const {estado} = req.query;
-    const filtros = {id_cliente: req.user.id //só incidentes do cliente autenticado
+    const { estado } = req.query;
+    const filtros = {
+      id_cliente: req.user.id //só incidentes do cliente autenticado
     };
 
     if (estado) {
@@ -73,17 +75,17 @@ router.get('/:id', verifyJwt, async (req, res) => {
 });
 
 router.put('/:id', verifyJwt, async (req, res) => {
-  const { nome, descricao, categoria, tipoIncidente,data } = req.body;
+  const { nome, descricao, categoria, tipoIncidente, data } = req.body;
 
-   const incidente = await Incidente.findOneAndUpdate(
-      {_id: req.params.id, id_cliente: req.utilizador.id },
-      { nome, descricao, categoria, tipoIncidente, data },
-      { new: true }
-    ).populate('id_tecnico', 'name email');
+  const incidente = await Incidente.findOneAndUpdate(
+    { _id: req.params.id, id_cliente: req.utilizador.id },
+    { nome, descricao, categoria, tipoIncidente, data },
+    { new: true }
+  ).populate('id_tecnico', 'name email');
 
-    if (!incidente) {
-      return res.status(404).json({ message: 'Incidente não encontrado' });
-    }
+  if (!incidente) {
+    return res.status(404).json({ message: 'Incidente não encontrado' });
+  }
 
   res.json(incidente);
 });

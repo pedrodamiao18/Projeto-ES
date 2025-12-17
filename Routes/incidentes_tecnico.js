@@ -67,7 +67,7 @@ router.post('/aceitar', verifyJwt, async (req, res) => {
     }
 
     await Notificacao.updateMany(
-      { id_incidente: incidente._id },
+      { id_incidente: incidente._id, destinatario_tipo: 'tecnico' },
       { lida: true }
     );
 
@@ -107,6 +107,15 @@ router.put('/estado/:id', verifyJwt, async (req, res) => {
 
     if (!incidente) {
       return res.status(404).json({ message: 'Incidente não encontrado' });
+    }
+
+    if (estado === 'Resolvido') {
+      await Notificacao.create({
+        id_incidente: incidente._id,
+        id_utilizador: incidente.id_cliente,
+        destinatario_tipo: 'cliente',
+        mensagem: `O seu incidente "${incidente.nome}" foi resolvido.`
+      });
     }
 
     res.json({
