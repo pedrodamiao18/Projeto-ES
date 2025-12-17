@@ -1,5 +1,5 @@
 const Incidente = require('../Models/Incidente');
-
+const Notificacao = require('../Models/Notificacao');
 
 const listarIncidentesTecnico = async (req, res) => {
   try {
@@ -59,6 +59,15 @@ const resolverIncidente = async (req, res) =>{
 
     if (!incidenteAtualizado) {
       return res.status(404).json({ message: "Incidente não encontrado." });
+    }
+
+    if (dadosParaAtualizar.estado === 'Resolvido') {
+      await Notificacao.create({
+        id_incidente: incidenteAtualizado._id,
+        id_utilizador: incidenteAtualizado.id_cliente,
+        destinatario_tipo: 'cliente',
+        mensagem: `O seu incidente "${incidenteAtualizado.nome}" foi resolvido.`
+      });
     }
 
     res.status(200).json({ 
