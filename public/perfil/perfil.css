@@ -1,12 +1,4 @@
-/* Reset basic margins */
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'SF Pro', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #e8f8e5;
-}
+
 
 /* --- 1. CONFIGURAÇÃO GERAL --- */
 .main-container {
@@ -27,52 +19,6 @@ body, html {
     height: 100%;
     object-fit: cover;
     z-index: 0;
-}
-
-/* --- 2. SIDEBAR --- */
-.sidebar {
-    width: 80px;
-    background: rgba(82, 154, 96, 0.85);
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-    z-index: 20;
-    position: relative;
-}
-
-.nav-item {
-    color: #03320c;
-    opacity: 0.8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.nav-item:hover {
-    background: rgba(82, 154, 96, 0.5);
-    opacity: 1;
-}
-
-/* Estilo para quando a sidebar deteta a secção ativa via JS deles */
-.nav-item.active, .nav-item[data-active="true"] {
-    background: #529a60;
-    color: white;
-    opacity: 1;
-}
-
-.nav-item i {
-    width: 22px;
-    height: 22px;
 }
 
 /* --- 3. CONTEÚDO --- */
