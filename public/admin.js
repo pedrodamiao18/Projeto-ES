@@ -1,36 +1,38 @@
-async function iniciarIncidentes() {
-  carregarIncidentes(); // default: todos do cliente autenticado
+async function iniciarIncidentesAdmin() {
+  carregarIncidentesAdmin(); // default: lista completa para o admin
 }
 
-async function carregarIncidentes(estado = '') {
+async function carregarIncidentesAdmin(estado = '') {
   const tabela = document.querySelector('.table');
 
   try {
     const url = estado
-      ? `/api/incidentes?estado=${encodeURIComponent(estado)}`
-      : '/api/incidentes';
+      ? `/admin/incidentes?estado=${encodeURIComponent(estado)}`: '/admin/incidentes';
 
     const res = await fetch(url, {
       credentials: 'include'
     });
+
+    if (!res.ok) {
+      throw new Error('Não foi possível carregar os incidentes.');
+    }
+
     const incidentes = await res.json();
 
     tabela.innerHTML = '';
 
     incidentes.forEach((incidente) => {
       const row = document.createElement('div');
-      row.classList.add('row');
+      row.classList.add('row', 'no-click');
+      row.title = 'Apenas leitura para o administrador';
 
       row.innerHTML = `
-        <span>${incidente.categoria}</span>
+        <span>${incidente.nome || incidente.categoria}</span>
+        <span class="status prioridade">${incidente.prioridade || 'Sem prioridade'}</span>
         <span class="status ${getStatusClass(incidente.estado)}">
           ${incidente.estado}
         </span>
       `;
-
-      row.addEventListener('click', () => {
-        window.location.href = `./editarIncidente.html?id=${incidente._id}`;
-      });
 
       tabela.appendChild(row);
     });
@@ -41,17 +43,12 @@ async function carregarIncidentes(estado = '') {
 
 function getStatusClass(estado = '') {
   switch (estado.toLowerCase()) {
-    case 'aberto':
-      return 'aberto';
-    case 'por iniciar':
-      return 'por-iniciar';
-    case 'resolvido':
-      return 'resolvido';
-    default:
-      return '';
+    case 'aberto':return 'aberto';
+    case 'por iniciar':return 'por-iniciar';
+    case 'resolvido':return 'resolvido';
+    default:return '';
   }
 }
-
 const estadoHeader = document.getElementById('estadoHeader');
 const estadoDropdown = document.getElementById('estadoDropdown');
 
@@ -65,18 +62,16 @@ document.addEventListener('click', () => {
   estadoDropdown.style.display = 'none';
 });
 
-estadoDropdown.querySelectorAll('div').forEach((opcao) => {
+estadoDropdown.querySelectorAll('div').forEach(opcao => {
   opcao.addEventListener('click', () => {
     const estado = opcao.dataset.estado;
 
     if (estado === 'todos') {
-      carregarIncidentes(); // carrega todos
+      carregarIncidentesAdmin();//carrega todos
     } else {
-      carregarIncidentes(estado); // carrega os necessários
+      carregarIncidentesAdmin(estado);//carrega os necessários
     }
 
     estadoDropdown.style.display = 'none';
   });
 });
-
-document.addEventListener('DOMContentLoaded', iniciarIncidentes);

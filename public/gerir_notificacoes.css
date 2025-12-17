@@ -1,83 +1,8 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Inter, sans-serif;
-}
-
-body {
-  display: flex;
-  background: #e8f8e5;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.sidebar {
-  width: 80px;
-  background: rgba(82, 154, 96, 0.61); /* verde translúcido igual aos headers */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-}
-
-.nav-item {
-  color: #03320c;
-  opacity: 0.8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.nav-item:hover {
-  background: rgba(82, 154, 96, 0.3);
-  opacity: 1;
-}
-
-.nav-item.active {
-  background: #529a60;
-  color: white;
-  opacity: 1;
-}
-
-.nav-item i {
-  width: 22px;
-  height: 22px;
-}
 
 .main-content {
   flex: 1;
   padding: 40px;
   overflow-y: auto;
-}
-
-.header {
-  position: relative;
-  background: rgba(82, 154, 96, 0.61);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  width: 60%;
-  height: 70px;
-  margin: 40px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header h1 {
-  color: #03320c;
-  font-size: 2vw;
-  font-weight: 600;
-  text-align: center;
-  margin: 0;
 }
 
 .filtros {
@@ -115,6 +40,17 @@ body {
   align-items: center;
 }
 
+.lista-notificacoes .estado-vazio {
+  width: 90%;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  text-align: center;
+  padding: 30px;
+  color: #03320c;
+  font-size: 1vw;
+  font-weight: 500;
+}
+
 .notificacao {
   width: 90%;
   background: white;
@@ -132,6 +68,12 @@ body {
   font-weight: 500;
 }
 
+.tecnico-info {
+  font-size: 0.9vw;
+  color: #295c35;
+  margin-top: 6px;
+}
+
 .notificacao button {
   background: rgba(82, 154, 96, 0.61);
   border: none;
@@ -146,4 +88,93 @@ body {
 
 .notificacao button:hover {
   background: rgba(82, 154, 96, 0.8);
+}
+
+.notificacao .acoes {
+  display: flex;
+  gap: 10px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.ativo {
+  display: flex;
+}
+
+.modal-content {
+  width: min(520px, 90%);
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #03320c;
+}
+
+.modal-body h2 {
+  margin-bottom: 10px;
+  color: #03320c;
+}
+
+.modal-body ul {
+  list-style: none;
+  margin-top: 10px;
+  color: #03320c;
+  line-height: 1.4;
+}
+
+.modal-acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-acoes select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal-acoes button {
+  align-self: flex-end;
+  background: #529a60;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-acoes button:hover {
+  opacity: 0.9;
+}
+
+.info-admin {
+  font-size: 0.95rem;
+  color: #03320c;
+  background: rgba(82, 154, 96, 0.1);
+  border-radius: 8px;
+  padding: 10px 12px;
 }
