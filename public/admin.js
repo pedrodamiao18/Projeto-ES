@@ -63,7 +63,7 @@ function fazerTabelaIncidentesAdmin(lista) {
     row.title = 'Apenas leitura para o administrador';
 
     row.innerHTML = `
-      <span>${incidente.nome || incidente.categoria}</span>
+      <span>${incidente.categoria}</span>
       <span class="status prioridade">${incidente.prioridade || 'Sem prioridade'}</span>
       <span class="status ${getStatusClass(incidente.estado)}">
         ${incidente.estado}

@@ -39,7 +39,7 @@ function fazerTabelaIncidentes(lista) {
     row.classList.add('row');
 
     row.innerHTML = `
-      <span>${incidente.nome || incidente.categoria}</span>
+      <span>${incidente.categoria}</span>
       <span class="status ${getStatusClass(incidente.estado)}">
         ${incidente.estado}
       </span>
