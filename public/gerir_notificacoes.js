@@ -5,8 +5,8 @@ let notificacoesEndpoint = '/notificacoes';
 
 async function carregarNotificacoes(lida = filtroNotificacoes) {
   filtroNotificacoes = String(lida);
-  
-  const url=`${notificacoesEndpoint}?lida=${encodeURIComponent(filtroNotificacoes)}`;
+
+  const url = `${notificacoesEndpoint}?lida=${encodeURIComponent(filtroNotificacoes)}`;
   try {
     const res = await fetch(url, {
       credentials: "include"
@@ -37,9 +37,13 @@ async function carregarNotificacoes(lida = filtroNotificacoes) {
         return;
       }
 
-      const tecnicoInfo = roleAtual === 'admin' && notificacao.id_tecnico
-        ? `<p class="tecnico-info">Técnico: ${notificacao.id_tecnico.name || notificacao.id_tecnico.email}</p>`
+      const tecnicoInfo = roleAtual === 'admin' && notificacao.id_utilizador
+        ? `<p class="tecnico-info">Técnico: ${notificacao.id_utilizador.name || notificacao.id_utilizador.email}</p>`
         : '';
+
+      const descricao = roleAtual === 'cliente'
+        ? notificacao.mensagem
+        : incidente.descricao;
 
       const card = document.createElement("article");
       card.className = "notificacao";
@@ -47,7 +51,7 @@ async function carregarNotificacoes(lida = filtroNotificacoes) {
       card.innerHTML = `
         <div>
           <h3>${incidente.nome}</h3>
-          <p>${incidente.descricao}</p>
+          <p>${descricao}</p>
           ${tecnicoInfo}
         </div>
         <div class="acoes">
@@ -87,6 +91,15 @@ function abrirModal(notificacao) {
   selectPrioridade.value = incidente?.prioridade || "";
 
   atualizarAcoesModal(notificacao);
+
+  if (roleAtual === 'cliente' && !notificacao.lida) {
+    marcarNotificacaoComoLida(notificacao._id)
+      .then(() => {
+        notificacao.lida = true;
+        carregarNotificacoes(filtroNotificacoes);
+      })
+      .catch((err) => console.error('Erro ao marcar notificação como lida.', err));
+  }
 
   modal.classList.add("ativo");
   modal.setAttribute("aria-hidden", "false");
@@ -153,6 +166,23 @@ async function aceitarNotificacao() {
   }
 }
 
+async function marcarNotificacaoComoLida(idNotificacao) {
+  try {
+    const res = await fetch(`/notificacoes/${idNotificacao}/lida`, {
+      method: 'PATCH',
+      credentials: 'include'
+    });
+
+    if (!res.ok) {
+      const body = await res.json().catch(() => null);
+      throw new Error(body?.message || 'Falha ao atualizar notificação.');
+    }
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+
 async function obterRoleAtual() {
   try {
     const res = await fetch('/auth/check', { credentials: 'include' });
@@ -171,12 +201,12 @@ async function obterRoleAtual() {
   }
 }
 
-function prepararInterfaceSomenteLeitura() {
+function prepararInterfaceSomenteLeitura(mensagem = "Apenas técnicos podem aceitar incidentes.") {
   const modalAcoes = document.querySelector(".modal-acoes");
   if (modalAcoes && !modalAcoes.querySelector(".info-admin")) {
     const aviso = document.createElement("p");
     aviso.className = "info-admin";
-    aviso.textContent = "Administradores apenas podem consultar notificações dos técnicos.";
+    aviso.textContent = mensagem;
     modalAcoes.appendChild(aviso);
   }
 }
@@ -184,7 +214,7 @@ function prepararInterfaceSomenteLeitura() {
 function atualizarAcoesModal(notificacao) {
   const selectPrioridade = document.getElementById("modalPrioridade");
   const botaoAceitar = document.getElementById("modalAceitar");
-  const somenteConsulta = roleAtual === 'admin' || Boolean(notificacao?.lida);
+  const somenteConsulta = roleAtual !== 'tecnico' || Boolean(notificacao?.lida);
 
   if (selectPrioridade) {
     selectPrioridade.disabled = somenteConsulta;
@@ -195,8 +225,11 @@ function atualizarAcoesModal(notificacao) {
     botaoAceitar.style.display = somenteConsulta ? "none" : "";
   }
 
-  if (roleAtual === 'admin') {
-    prepararInterfaceSomenteLeitura();
+  if (roleAtual !== 'tecnico') {
+    const mensagem = roleAtual === 'admin'
+      ? "Administradores apenas podem consultar notificações dos técnicos."
+      : "Clientes apenas podem consultar o histórico de notificações.";
+    prepararInterfaceSomenteLeitura(mensagem);
   }
 }
 
@@ -215,10 +248,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   carregarNotificacoes('false');
 
-  if (roleAtual === 'admin') {
-    prepararInterfaceSomenteLeitura();
-  } else {
+  if (roleAtual === 'tecnico') {
     document.getElementById("modalAceitar").addEventListener("click", aceitarNotificacao);
+  } else {
+    const mensagem = roleAtual === 'admin'
+      ? "Administradores apenas podem consultar notificações dos técnicos."
+      : "Clientes apenas podem consultar o histórico de notificações.";
+    prepararInterfaceSomenteLeitura(mensagem);
   }
 
   document.getElementById("fecharModal").addEventListener("click", fecharModal);
