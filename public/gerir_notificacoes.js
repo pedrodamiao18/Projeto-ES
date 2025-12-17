@@ -63,7 +63,7 @@ async function carregarNotificacoes(lida = filtroNotificacoes) {
     });
   } catch (err) {
     console.error(err);
-    alert("Não foi possível carregar as notificações.");
+    mostrarNotificacao("Não foi possível carregar as notificações.", "erro");
   }
 }
 
@@ -110,7 +110,7 @@ function formatarData(dataIso) {
 
 async function aceitarNotificacao() {
   if (roleAtual === 'admin') {
-    alert("Apenas técnicos podem aceitar incidentes.");
+    mostrarNotificacao("Apenas técnicos podem aceitar incidentes.", "erro");
     return;
   }
 
@@ -122,11 +122,11 @@ async function aceitarNotificacao() {
   const prioridade = document.getElementById("modalPrioridade").value;
 
   if (!prioridade) {
-    alert("Selecione uma prioridade para aceitar a tarefa.");
+    mostrarNotificacao("Selecione uma prioridade para aceitar a tarefa.", "erro");
     return;
   }
   if (!incidente?._id) {
-    alert("Incidente inválido.");
+    mostrarNotificacao("Incidente inválido.", "erro");
     return;
   }
 
@@ -144,12 +144,12 @@ async function aceitarNotificacao() {
       throw new Error(body.message || "Não foi possível aceitar o incidente");
     }
 
-    alert(body.message || "Incidente aceite com sucesso");
+    mostrarNotificacao(body.message || "Incidente aceite com sucesso", "sucesso");
     fecharModal();
     carregarNotificacoes(filtroNotificacoes);
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    mostrarNotificacao(err.message, "erro");
   }
 }
 
@@ -227,9 +227,4 @@ document.addEventListener("DOMContentLoaded", async () => {
       fecharModal();
     }
   });
-
-  const logoutButton = document.getElementById("logoutButton");
-  if (logoutButton) {
-    logoutButton.addEventListener("click", logoutRapido);
-  }
 });

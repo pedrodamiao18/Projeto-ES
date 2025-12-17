@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const incidenteId = params.get('id');
 
 if (!incidenteId) {
-  alert('Incidente não encontrado');
+  mostrarNotificacao('Incidente não encontrado!', 'erro')
 }
 document.addEventListener('DOMContentLoaded', async () => {
   if (!incidenteId) return;
@@ -48,8 +48,10 @@ document.getElementById('formEditar').addEventListener('submit', async (e) => {
     body: JSON.stringify(dados)
   });
 
-  alert('Incidente atualizado com sucesso');
-  location.reload();
+  mostrarNotificacao('Incidente atualizado com sucesso!', 'sucesso');
+  setTimeout(() => {
+    location.reload();
+  }, 1500);
 });
 
 function preencherTipos(categoria, tipoSelecionado) {

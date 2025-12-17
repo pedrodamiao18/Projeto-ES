@@ -83,7 +83,7 @@ async function mudarEstado(id, estado) {
     carregarIncidentesTecnico();
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    mostrarNotificacao(err.message, 'erro');
     carregarIncidentesTecnico();
   }
 }
