@@ -28,11 +28,14 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Login com sucesso');
-            window.location.href = "/incidentes/incidentes.html";
+            mostrarNotificacao('Login efetuado com sucesso!', 'sucesso');
+            
+            setTimeout(() => {
+                window.location.href = "/incidentes/incidentes.html";
+            }, 1500);
         } else {
             const mensagem = data.message || data.error || 'Credenciais inválidas.';
-            alert('O login falhou: ' + mensagem);
+            mostrarNotificacao(mensagem, 'erro');
         }
     })
     .catch(error => {
