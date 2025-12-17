@@ -70,7 +70,7 @@
   font-weight: 500;
 }
 
-.aberto {
+.em-resolucao {
   background: #eaee0b;
   color: #03320c;
 }
@@ -78,7 +78,7 @@
   background: #5aee0b;
   color: #03320c;
 }
-.por-iniciar {
+.nao-resolvido {
   background:#ee0b0b; 
   color: #03320c;
 }
