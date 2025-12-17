@@ -8,8 +8,8 @@ const incidenteSchema = new mongoose.Schema({
     default: null
   },
   prioridade: { type: String, enum: ['Baixa', 'Media', 'Alta', 'Urgente'], default: null },
-  estado: { type: String, enum: ['Por iniciar', 'Aberto', 'Resolvido'],
-  default: 'Por iniciar'},
+  estado: { type: String, enum: ['Em Resolucao', 'Nao Resolvido', 'Resolvido'],
+  default: 'Em Resolucao'},
   descricao: { type: String, required: true },
   data: { type: Date, default: Date.now },
   tipoIncidente: { type: String, required: true },

@@ -91,7 +91,7 @@ router.put('/estado/:id', verifyJwt, async (req, res) => {
 
     const { estado } = req.body;
 
-    const estadosValidos = ['Por iniciar', 'Aberto', 'Resolvido'];
+    const estadosValidos = ['Não Resolvido', 'Em Resolução', 'Resolvido'];
     if (!estadosValidos.includes(estado)) {
       return res.status(400).json({ message: 'Estado inválido' });
     }

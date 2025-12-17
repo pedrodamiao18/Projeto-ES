@@ -54,11 +54,16 @@ function fazerTabelaIncidentes(lista) {
 }
 
 function getStatusClass(estado = '') {
-  switch (estado.toLowerCase()) {
-    case 'aberto':
-      return 'aberto';
-    case 'por iniciar':
-      return 'por-iniciar';
+  const normalizado = estado
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, ""); 
+
+  switch (normalizado) {
+    case 'em resolucao':
+      return 'em-resolucao';
+    case 'nao resolvido':
+      return 'nao-resolvido';
     case 'resolvido':
       return 'resolvido';
     default:

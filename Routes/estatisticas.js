@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const totalIncidentes = await Incidente.countDocuments();
 
-    const estadosPadrao = ["Por iniciar", "Aberto", "Resolvido"];
+    const estadosPadrao = ["Não Resolvido", "Em Resolução", "Resolvido"];
     const incidentesPorEstadoDocs = await Incidente.aggregate([
       { $group: { _id: "$estado", count: { $sum: 1 } } },
     ]);

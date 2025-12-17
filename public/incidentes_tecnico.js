@@ -86,7 +86,7 @@ function fazerTabelaIncidentesTecnico(lista) {
 }
 
 function estadoOptions(estadoAtual) {
-  const estados = ['Por iniciar', 'Aberto', 'Resolvido'];
+  const estados = ['Não Resolvido', 'Em Resolução', 'Resolvido'];
   return estados
     .map(
       (estado) =>
