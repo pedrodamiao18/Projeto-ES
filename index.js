@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const authRoutes = require('./Routes/auth');
 const incidentesRoutes = require('./Routes/incidentes');
 const estatisticasRoutes = require('./Routes/estatisticas');
+const solucaoRoutes = require('./Routes/solucao');
 
 const { verifyJwt } = require('./Middleware/auth');
 const { isAdministrador } = require('./Middleware/roles');
@@ -20,7 +21,8 @@ app.use(cors({
   credentials: true,
   origin: 'http://localhost:4000'
 }));
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 
 
@@ -46,9 +48,11 @@ app.use('/notificacoes', notificacoesRoutes);
 
 const incidentesTecnicoRoutes = require('./Routes/incidentes_tecnico');
 app.use('/incidentes-tecnico', incidentesTecnicoRoutes);
+app.use('/resolver', solucaoRoutes);
 
 const adminRoutes = require('./Routes/admin');
 app.use('/admin', adminRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor a correr em: http://localhost:${PORT}`);
