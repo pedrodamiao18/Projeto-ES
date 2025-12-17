@@ -7,7 +7,15 @@ const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
-    
+    const params = new URLSearchParams(window.location.search);
+
+    const idIncidente = params.get('id');
+    const estadoDestino = params.get('estado');
+
+    if (idIncidente) {
+        preencherDadosIniciais(idIncidente, estadoDestino);
+    }
+
     const selectIncidente = document.getElementById('incident-id');
     const selectEstado = document.getElementById('status');
     const divCausa = document.getElementById('cause-wrapper');
@@ -18,14 +26,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         const res = await fetch('/resolver', { credentials: 'include' });
-        
+
         if (!res.ok) {
             throw new Error('Erro ao buscar incidentes');
         }
 
         const incidentes = await res.json();
 
+        if (!idIncidente) {
         selectIncidente.innerHTML = '<option value="" selected disabled>Selecione o incidente...</option>';
+        }
 
         if (incidentes.length === 0) {
             const option = document.createElement('option');
@@ -35,16 +45,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             incidentes.forEach(inc => {
                 const option = document.createElement('option');
-                option.value = inc._id; 
+                option.value = inc._id;
                 const dataFormatada = new Date(inc.data).toLocaleDateString('pt-PT');
-                option.textContent = `${inc.nome} (${dataFormatada})`; 
+                option.textContent = `${inc.nome} (${dataFormatada})`;
                 selectIncidente.appendChild(option);
             });
         }
 
     } catch (err) {
         console.error("Erro ao carregar incidentes:", err);
-        alert("Erro ao carregar a lista de incidentes."); 
+        alert("Erro ao carregar a lista de incidentes.");
     }
 
 
@@ -58,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (val === "resolvido") {
             divFicheiro.style.display = "flex";
             divCausa.style.display = "flex";
-        } 
+        }
         else if (val === "nao_resolvido") {
             divMotivo.style.display = "flex";
         }
@@ -66,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (selectEstado) {
         selectEstado.addEventListener("change", checkStatus);
-        checkStatus(); 
+        checkStatus();
     }
 
     if (form) {
@@ -86,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 alert("Por favor selecione um estado.");
                 return;
             }
-            
+
             let observacaoText = "";
             if (status === 'resolvido') {
                 observacaoText = document.querySelector('#cause-wrapper textarea').value;
@@ -122,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    credentials: 'include', 
+                    credentials: 'include',
                     body: JSON.stringify(payload)
                 });
 
@@ -130,7 +140,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (res.ok) {
                     mostrarNotificacao("Submetido com sucesso!", 'sucesso');
-                    window.location.href = 'incidentes.html'; 
+                    window.location.href = 'incidentes.html';
                 } else {
                     mostrarNotificao("Erro ao submeter!", 'erro');
                 }
@@ -141,3 +151,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 });
+
+function preencherDadosIniciais(id, estado) {
+  const selectIncidente = document.getElementById('incident-id');
+  const selectStatus = document.getElementById('status');
+
+  if (selectIncidente) {
+    selectIncidente.value = id;
+  }
+
+  if (selectStatus) {
+    selectStatus.value = estado;
+  }
+}
