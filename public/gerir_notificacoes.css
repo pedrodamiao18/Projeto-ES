@@ -5,45 +5,6 @@
   overflow-y: auto;
 }
 
-.header {
-  position: relative;
-  background: rgba(82, 154, 96, 0.61);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  width: 60%;
-  height: 70px;
-  margin: 40px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header h1 {
-  color: #03320c;
-  font-size: 2vw;
-  font-weight: 600;
-  text-align: center;
-  margin: 0;
-}
-
-.logout-button {
-  position: absolute;
-  right: 20px;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 12px;
-  background: #03320c;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.logout-button:hover {
-  opacity: 0.85;
-}
-
 .filtros {
   display: flex;
   gap: 15px;

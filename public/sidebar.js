@@ -93,6 +93,7 @@ function configurarSidebar(role) {
             });
     };
 
+    hideSection("incidentes");
     hideSection("estatisticas");
     hideSection("notificacoes");
     hideSection("registo-solucao");
@@ -109,6 +110,7 @@ function configurarSidebar(role) {
     }
 
     if (role === "cliente") {
+        showSection("incidentes");
     }
 }
 
