@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   } catch (err) {
     console.error(err);
-    alert('Erro ao carregar perfil.');
+    mostrarNotificacao('Erro ao carregar perfil.', 'erro');
   }
 });
 

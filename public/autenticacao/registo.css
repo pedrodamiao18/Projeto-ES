@@ -36,11 +36,12 @@ body {
   left: 244px;
   top: 116px;
   position: absolute;
-  background: #ABFFB2;
+  background: #bcf8c1;
   border-radius: 65px;
   overflow: hidden;
   outline: 12px white solid;
   outline-offset: -6px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
 .ParteBranca {
@@ -136,8 +137,8 @@ body {
 
 .LoginLink {
   position: absolute;
-  left: 995px;
-  top: 568px;
+  left: 1008px;
+  top: 569px;
   opacity: 0.8;
   color: #0B1523;
   font-size: 14px;

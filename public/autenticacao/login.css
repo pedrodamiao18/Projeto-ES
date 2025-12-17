@@ -36,11 +36,12 @@ body {
   left: 244px;
   top: 116px;
   position: absolute;
-  background: #ABFFB2;
+  background: #bcf8c1;
   border-radius: 65px;
   overflow: hidden;
   outline: 12px white solid;
   outline-offset: -6px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
 .ParteBranca {
@@ -132,7 +133,7 @@ body {
 }
 
 .AindaNOTemConta {
-  left: 860px;
+  left: 855px;
   top: 530px;
   opacity: 0.6;
   color: #0B1523;
@@ -140,8 +141,8 @@ body {
 }
 
 .Registar {
-  left: 1010px;
-  top: 528px;
+  left: 1018px;
+  top: 529px;
   opacity: 0.8;
   color: #0B1523;
   font-size: 14px;
@@ -151,7 +152,7 @@ body {
 }
 
 .EsqueceuAPalavraPasse {
-  left: 880px;
+  left: 871px;
   top: 555px;
   opacity: 0.5;
   color: #0B1523;
