@@ -153,24 +153,6 @@ async function aceitarNotificacao() {
   }
 }
 
-async function logoutRapido() {
-  try {
-    const res = await fetch("/auth/logout", {
-      method: "POST",
-      credentials: "include"
-    });
-
-    if (!res.ok) {
-      throw new Error("Não foi possível terminar sessão.");
-    }
-
-    window.location.href = "login.html";
-  } catch (err) {
-    console.error("Erro no logout:", err);
-    alert("Não foi possível terminar sessão automaticamente. Tente novamente.");
-  }
-}
-
 async function obterRoleAtual() {
   try {
     const res = await fetch('/auth/check', { credentials: 'include' });
