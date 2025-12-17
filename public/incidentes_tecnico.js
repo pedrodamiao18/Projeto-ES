@@ -80,7 +80,22 @@ function fazerTabelaIncidentesTecnico(lista) {
 
     const estadoSelect = row.querySelector('.estado-select');
     estadoSelect.addEventListener('change', (event) => {
-      mudarEstado(event.target.dataset.id, event.target.value);
+      const id = event.target.dataset.id;
+      const novoEstado = event.target.value;
+      let estadoParaUrl = '';
+
+      if (novoEstado === 'Resolvido' || novoEstado === 'Não Resolvido') {
+        
+        if (novoEstado === 'Resolvido') {
+            estadoParaUrl = 'resolvido';
+        } else if (novoEstado === 'Não Resolvido') {
+            estadoParaUrl = 'nao_resolvido';
+        }
+
+        window.location.href = `/incidentes/registoSolucao.html?id=${id}&estado=${estadoParaUrl}`;
+      } else {
+        mudarEstado(id, novoEstado);
+      }
     });
 
     const prioridadeSelect = row.querySelector('.prioridade-select');
