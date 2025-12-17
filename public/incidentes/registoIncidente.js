@@ -1,5 +1,5 @@
 document.getElementById('btnSubmeter').addEventListener('click', async (e) => {
-  e.preventDefault(); 
+  e.preventDefault();
 
   const incidente = {
     nome: document.getElementById('nome').value.trim(),
@@ -10,7 +10,7 @@ document.getElementById('btnSubmeter').addEventListener('click', async (e) => {
   };
 
   if (!incidente.nome || !incidente.tipoIncidente || !incidente.categoria || !incidente.descricao) {
-    alert('Por favor, preencha todos os campos.');
+    mostrarNotificacao('Por favor, preencha todos os campos.', 'erro');
     return;
   }
 
@@ -18,18 +18,18 @@ document.getElementById('btnSubmeter').addEventListener('click', async (e) => {
     const resposta = await fetch('/api/incidentes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-       credentials: 'include', 
+      credentials: 'include',
       body: JSON.stringify(incidente)
     });
 
     if (resposta.ok) {
-      alert('Incidente registado com sucesso!');
-      document.querySelector('.form-box').reset?.(); 
+      mostrarNotificacao('Incidente registado com sucesso!', 'sucesso');
+      document.querySelector('.form-box').reset?.();
     } else {
-      alert('Erro ao registar o incidente.');
+      mostrarNotificacao('Erro ao registar o incidente.', 'erro');
     }
   } catch (erro) {
     console.error('Erro:', erro);
-    alert('Falha de ligação com o servidor.');
+    mostrarNotificacao('Falha de ligação com o servidor.', 'erro');
   }
 });

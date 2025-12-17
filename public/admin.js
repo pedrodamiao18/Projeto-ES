@@ -1,5 +1,29 @@
 async function iniciarIncidentesAdmin() {
+  configurarPesquisaAdmin();
   carregarIncidentesAdmin(); // default: lista completa para o admin
+}
+
+let todosIncidentesAdmin = [];
+
+function configurarPesquisaAdmin() {
+  const searchBar = document.querySelector('.search-bar');
+  if (searchBar) {
+    //ter cuidado com listeners antigos
+    const newSearchBar = searchBar.cloneNode(true);
+    searchBar.parentNode.replaceChild(newSearchBar, searchBar);
+
+    newSearchBar.addEventListener('input', (e) => {
+      const termo = e.target.value.toLowerCase();
+      
+      const filtrados = todosIncidentesAdmin.filter((inc) => {
+        const nome = inc.nome ? inc.nome.toLowerCase() : '';
+        const categoria = inc.categoria ? inc.categoria.toLowerCase() : '';
+        return nome.includes(termo) || categoria.includes(termo);
+      });
+
+      fazerTabelaIncidentesAdmin(filtrados);
+    });
+  }
 }
 
 async function carregarIncidentesAdmin(estado = '') {
@@ -17,28 +41,37 @@ async function carregarIncidentesAdmin(estado = '') {
       throw new Error('Não foi possível carregar os incidentes.');
     }
 
-    const incidentes = await res.json();
-
-    tabela.innerHTML = '';
-
-    incidentes.forEach((incidente) => {
-      const row = document.createElement('div');
-      row.classList.add('row', 'no-click');
-      row.title = 'Apenas leitura para o administrador';
-
-      row.innerHTML = `
-        <span>${incidente.nome || incidente.categoria}</span>
-        <span class="status prioridade">${incidente.prioridade || 'Sem prioridade'}</span>
-        <span class="status ${getStatusClass(incidente.estado)}">
-          ${incidente.estado}
-        </span>
-      `;
-
-      tabela.appendChild(row);
-    });
+    todosIncidentesAdmin = await res.json();
+    fazerTabelaIncidentesAdmin(todosIncidentesAdmin);
   } catch (err) {
     console.error('Erro ao carregar incidentes:', err);
   }
+}
+
+function fazerTabelaIncidentesAdmin(lista) {
+  const tabela = document.querySelector('.table');
+  tabela.innerHTML = '';
+
+  if (!lista || lista.length === 0) {
+    tabela.innerHTML = '<div class="row no-click" style="justify-content:center;">Sem resultados.</div>';
+    return;
+  }
+
+  lista.forEach((incidente) => {
+    const row = document.createElement('div');
+    row.classList.add('row', 'no-click');
+    row.title = 'Apenas leitura para o administrador';
+
+    row.innerHTML = `
+      <span>${incidente.nome || incidente.categoria}</span>
+      <span class="status prioridade">${incidente.prioridade || 'Sem prioridade'}</span>
+      <span class="status ${getStatusClass(incidente.estado)}">
+        ${incidente.estado}
+      </span>
+    `;
+
+    tabela.appendChild(row);
+  });
 }
 
 function getStatusClass(estado = '') {
