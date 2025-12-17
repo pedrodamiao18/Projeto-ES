@@ -70,15 +70,22 @@ function fazerTabelaIncidentesTecnico(lista) {
 
     row.innerHTML = `
       <span>${inc.nome || inc.categoria}</span>
-      <span>${inc.prioridade || 'Sem prioridade'}</span>
-      <select data-id="${inc._id}">
+      <select class="prioridade-select" data-id="${inc._id}">
+        ${prioridadeOptions(inc.prioridade)}
+      </select>
+      <select class="estado-select" data-id="${inc._id}">
         ${estadoOptions(inc.estado)}
       </select>
     `;
 
-    const select = row.querySelector('select');
-    select.addEventListener('change', (event) => {
+    const estadoSelect = row.querySelector('.estado-select');
+    estadoSelect.addEventListener('change', (event) => {
       mudarEstado(event.target.dataset.id, event.target.value);
+    });
+
+    const prioridadeSelect = row.querySelector('.prioridade-select');
+    prioridadeSelect.addEventListener('change', (event) => {
+      mudarPrioridade(event.target.dataset.id, event.target.value);
     });
 
     tabela.appendChild(row);
@@ -95,6 +102,16 @@ function estadoOptions(estadoAtual) {
     .join('');
 }
 
+function prioridadeOptions(prioridadeAtual = '') {
+  const prioridades = ['Baixa', 'Media', 'Alta', 'Urgente'];
+  return prioridades
+    .map(
+      (prioridade) =>
+        `<option value="${prioridade}" ${prioridade === prioridadeAtual ? 'selected' : ''}>${prioridade}</option>`
+    )
+    .join('');
+}
+
 async function mudarEstado(id, estado) {
   try {
     const res = await fetch(`/incidentes-tecnico/estado/${id}`, {
@@ -107,6 +124,28 @@ async function mudarEstado(id, estado) {
     if (!res.ok) {
       const body = await res.json().catch(() => ({}));
       throw new Error(body.message || 'Erro ao atualizar o estado.');
+    }
+
+    carregarIncidentesTecnico();
+  } catch (err) {
+    console.error(err);
+    mostrarNotificacao(err.message, 'erro');
+    carregarIncidentesTecnico();
+  }
+}
+
+async function mudarPrioridade(id, prioridade) {
+  try {
+    const res = await fetch(`/incidentes-tecnico/prioridade/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ prioridade })
+    });
+
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(body.message || 'Erro ao atualizar a prioridade.');
     }
 
     carregarIncidentesTecnico();
