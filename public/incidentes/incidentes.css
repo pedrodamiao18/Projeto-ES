@@ -61,6 +61,30 @@
   border: none;
 }
 
+.status {
+  border-radius: 10px;
+  padding: 0.4em 1.2em;
+  color: black;
+  font-weight: 500;
+}
+
+.em-resolucao {
+  background: #eaee0b;
+  color: #03320c;
+}
+.resolvido {
+  background: #5aee0b;
+  color: #03320c;
+}
+.nao-resolvido {
+  background:#ee0b0b; 
+  color: #03320c;
+}
+
+.row {
+  cursor: pointer;
+}
+
 .row:hover {
   background: rgba(82, 154, 96, 0.1);
   cursor: pointer;

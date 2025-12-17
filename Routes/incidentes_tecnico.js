@@ -66,15 +66,10 @@ router.post('/aceitar', verifyJwt, async (req, res) => {
       });
     }
 
-    await Notificacao.updateOne(
-      { id_incidente: incidente._id, id_tecnico: req.user.id },
+    await Notificacao.updateMany(
+      { id_incidente: incidente._id },
       { lida: true }
     );
-
-    await Notificacao.deleteMany({
-      id_incidente: incidente._id,
-      id_tecnico: { $ne: req.user.id }
-    });
 
     res.json({
       message: 'Incidente aceite com sucesso',
@@ -96,7 +91,7 @@ router.put('/estado/:id', verifyJwt, async (req, res) => {
 
     const { estado } = req.body;
 
-    const estadosValidos = ['Por iniciar', 'Aberto', 'Resolvido'];
+    const estadosValidos = ['Não Resolvido', 'Em Resolução', 'Resolvido'];
     if (!estadosValidos.includes(estado)) {
       return res.status(400).json({ message: 'Estado inválido' });
     }
@@ -122,40 +117,6 @@ router.put('/estado/:id', verifyJwt, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Erro ao atualizar estado' });
-  }
-});
-
-// alterar prioridade do incidente
-router.put('/prioridade/:id', verifyJwt, async (req, res) => {
-  try {
-    if (req.user.role !== 'tecnico') {
-      return res.status(403).json({ message: 'Acesso negado' });
-    }
-
-    const { prioridade } = req.body;
-    const prioridadesValidas = ['Baixa', 'Media', 'Alta', 'Urgente'];
-
-    if (!prioridade || !prioridadesValidas.includes(prioridade)) {
-      return res.status(400).json({ message: 'Prioridade inválida' });
-    }
-
-    const incidente = await Incidente.findOneAndUpdate(
-      { _id: req.params.id, id_tecnico: req.user.id },
-      { prioridade },
-      { new: true }
-    );
-
-    if (!incidente) {
-      return res.status(404).json({ message: 'Incidente não encontrado' });
-    }
-
-    res.json({
-      message: 'Prioridade atualizada',
-      incidente
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Erro ao atualizar prioridade' });
   }
 });
 module.exports = router;
