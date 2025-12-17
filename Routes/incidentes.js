@@ -2,12 +2,31 @@ const express = require('express');
 const router = express.Router();
 const Incidente = require('../Models/Incidente');
 const verifyJwt = require('../Middleware/auth').verifyJwt;
+const Notificacao = require('../Models/Notificacao');
+const User = require('../Models/User');
 
 // Criar novo incidente
 router.post('/', verifyJwt, async (req, res) => {
   try {
+    if (req.user.role !== 'cliente') {
+      return res.status(403).json({ message: 'Acesso negado' });
+    }
     const incidente = new Incidente({ ...req.body, id_cliente: req.user.id });
     await incidente.save();
+
+    // Criar notificações para todos os técnicos disponíveis
+    const tecnicos = await User.find({ role: 'tecnico' }).select('_id');
+
+    if (tecnicos.length > 0) {
+      const notificacoes = tecnicos.map((tecnico) => ({
+        id_incidente: incidente._id,
+        id_tecnico: tecnico._id,
+        mensagem: `Novo incidente registado: ${incidente.nome}`
+      }));
+
+      await Notificacao.insertMany(notificacoes);
+    }
+
     res.status(201).json({ message: 'Incidente registado com sucesso!' });
   } catch (err) {
     console.error(err);
@@ -26,7 +45,9 @@ router.get('/', verifyJwt, async (req, res) => {
     if (estado) {
       filtros.estado = estado;
     }
-    const incidentes = await Incidente.find(filtros);
+    const incidentes = await Incidente
+      .find(filtros)
+      .populate('id_tecnico', 'name email');
     res.json(incidentes);
   } catch (err) {
     console.error(err);
@@ -36,8 +57,9 @@ router.get('/', verifyJwt, async (req, res) => {
 
 router.get('/:id', verifyJwt, async (req, res) => {
   try {
-    const incidente = await Incidente.findOne({ _id: req.params.id, id_cliente: req.user.id
-  });
+    const incidente = await Incidente
+      .findOne({ _id: req.params.id, id_cliente: req.user.id })
+      .populate('id_tecnico', 'name email');
 
     if (!incidente) {
       return res.status(404).json({ message: 'Incidente não encontrado' });
@@ -57,7 +79,7 @@ router.put('/:id', verifyJwt, async (req, res) => {
       {_id: req.params.id, id_cliente: req.utilizador.id },
       { nome, descricao, categoria, tipoIncidente, data },
       { new: true }
-    );
+    ).populate('id_tecnico', 'name email');
 
     if (!incidente) {
       return res.status(404).json({ message: 'Incidente não encontrado' });
@@ -65,9 +87,5 @@ router.put('/:id', verifyJwt, async (req, res) => {
 
   res.json(incidente);
 });
-
-
-
-
 
 module.exports = router;

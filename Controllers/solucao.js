@@ -1,5 +1,25 @@
 const Incidente = require('../Models/Incidente');
 
+
+const listarIncidentesTecnico = async (req, res) => {
+  try {
+    const tec_id = req.user.id;
+
+    const incidentes = await Incidente.find({ 
+        id_tecnico: tec_id,
+        estado: { $ne: 'Resolvido' } 
+    })
+    .select('nome data _id')
+    .sort({ data: -1 });
+
+    res.json(incidentes);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Erro ao buscar incidentes do técnico." });
+  }
+};
+
 const resolverIncidente = async (req, res) =>{
     const {
         incident_id,
@@ -21,22 +41,20 @@ const resolverIncidente = async (req, res) =>{
       observacoesTecnicas: observacao
     };
 
-    // 4. Lógica Específica para "Resolvido"
     if (status === 'resolvido') {
       
-      // Valida se o ficheiro foi enviado
       if (!pdfFileBase64) {
         return res.status(400).json({ message: "Para resolver, é obrigatório anexar o relatório PDF." });
       }
 
-      dadosParaAtualizar.relatorioResolucao = pdfFileBase64; // Guarda o ficheiro
-      dadosParaAtualizar.dataResolucao = new Date(); // Marca a hora da resolução
+      dadosParaAtualizar.relatorioResolucao = pdfFileBase64;
+      dadosParaAtualizar.dataResolucao = new Date();
     }
 
     const incidenteAtualizado = await Incidente.findByIdAndUpdate(
       incident_id, 
       dadosParaAtualizar, 
-      { new: true } // Opção para retornar o documento já atualizado
+      { new: true }
     );
 
     if (!incidenteAtualizado) {
@@ -54,4 +72,4 @@ const resolverIncidente = async (req, res) =>{
   }
 };
 
-module.exports = { resolverIncidente };
+module.exports = { resolverIncidente, listarIncidentesTecnico };

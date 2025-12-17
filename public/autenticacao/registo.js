@@ -8,7 +8,7 @@ document.getElementById('registo-form').addEventListener('submit', function(even
 
     // validacao
     if (!nome || !email || !password) {
-        alert('Tem de inserir os dados.');
+        mostrarNotificacao('Tem de preencher todos os dados.', 'erro');
         return;
     }
 
@@ -24,7 +24,7 @@ document.getElementById('registo-form').addEventListener('submit', function(even
     .then(data => {
         if (data.success) {
             //levar para o login para fazer login
-            alert('Registo com sucesso');
+            mostrarNotificacao('Registo efetuado com sucesso!', 'sucesso');
             window.location.href = "login.html";
         } else {
             alert('O registo falhou: ' + data.message);
@@ -32,6 +32,6 @@ document.getElementById('registo-form').addEventListener('submit', function(even
     })
     .catch(error => {
         console.error('Erro durante o registo:', error);
-        alert('Ocorreu um erro durante o registo. Por favor, tente novamente mais tarde.');
+        mostrarNotificacao('Ocorreu um erro. Tente mais tarde.', 'erro');
     });
 });

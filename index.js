@@ -4,34 +4,38 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const authRoutes = require('./Routes/auth');
+const incidentesRoutes = require('./Routes/incidentes');
+const estatisticasRoutes = require('./Routes/estatisticas');
+const solucaoRoutes = require('./Routes/solucao');
+
+const { verifyJwt } = require('./Middleware/auth');
+const { isAdministrador } = require('./Middleware/roles');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
   credentials: true,
   origin: 'http://localhost:4000'
 }));
-app.use(express.json({limit: '100mb'})); //máx da payload aumentado para 100mb para receber pdfs até ~75mb
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB conectado"))
-  .catch((err) => console.error("❌ Erro ao conectar ao MongoDB:", err));
+  .then(() => console.log("MongoDB conectado"))
+  .catch((err) => console.error("Erro ao conectar ao MongoDB:", err));
 
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'autenticacao', 'login.html'));
 });
 
-const authRoutes = require('./Routes/auth');
-const incidentesRoutes = require('./Routes/incidentes');
-const estatisticasRoutes = require('./Routes/estatisticas');
 
-const { verifyJwt } = require('./Middleware/auth');
-const { isAdministrador } = require('./Middleware/roles');
 
 app.use('/auth', authRoutes);
 app.use('/api/incidentes', incidentesRoutes);
@@ -39,7 +43,17 @@ app.use('/api/incidentes', incidentesRoutes);
 // Rotas protegidas (necessitam de autenticação)
 app.use('/api/estatisticas', verifyJwt, isAdministrador, estatisticasRoutes);
 
-// Inicia o servidor
+const notificacoesRoutes = require('./Routes/notificacao');
+app.use('/notificacoes', notificacoesRoutes);
+
+const incidentesTecnicoRoutes = require('./Routes/incidentes_tecnico');
+app.use('/incidentes-tecnico', incidentesTecnicoRoutes);
+app.use('/resolver', solucaoRoutes);
+
+const adminRoutes = require('./Routes/admin');
+app.use('/admin', adminRoutes);
+
+
 app.listen(PORT, () => {
   console.log(`🚀 Servidor a correr em: http://localhost:${PORT}`);
 });

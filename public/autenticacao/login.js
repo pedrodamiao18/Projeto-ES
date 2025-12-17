@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/auth";
+const url = "/auth";
 
 document.addEventListener('DOMContentLoaded', function () {
    isLoggedIn();
@@ -22,17 +22,20 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         headers: {
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({ email, password })
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            //o servidor manda o token numa cookie httpOnly
-            //dar um alerta do sucesso ao cliente
-            alert('Login com sucesso');
-            window.location.href = "/incidentes/incidentes.html";
+            mostrarNotificacao('Login efetuado com sucesso!', 'sucesso');
+            
+            setTimeout(() => {
+                window.location.href = "/incidentes/incidentes.html";
+            }, 1500);
         } else {
-            alert('O login falhou: ' + data.message);
+            const mensagem = data.message || data.error || 'Credenciais inválidas.';
+            mostrarNotificacao(mensagem, 'erro');
         }
     })
     .catch(error => {

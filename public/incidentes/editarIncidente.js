@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const incidenteId = params.get('id');
 
 if (!incidenteId) {
-  alert('Incidente não encontrado');
+  mostrarNotificacao('Incidente não encontrado!', 'erro')
 }
 document.addEventListener('DOMContentLoaded', async () => {
   if (!incidenteId) return;
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Campos bloqueados
     document.getElementById('estado').textContent = incidente.estado;
     document.getElementById('tecnico').textContent =
-      incidente.id_tecnico?.nome || 'Não atribuído';
+      incidente.id_tecnico?.name || 'Não atribuído';
 
   } catch (err) {
     console.error('Erro ao carregar incidente:', err);
@@ -48,8 +48,10 @@ document.getElementById('formEditar').addEventListener('submit', async (e) => {
     body: JSON.stringify(dados)
   });
 
-  alert('Incidente atualizado com sucesso');
-  location.reload();
+  mostrarNotificacao('Incidente atualizado com sucesso!', 'sucesso');
+  setTimeout(() => {
+    location.reload();
+  }, 1500);
 });
 
 function preencherTipos(categoria, tipoSelecionado) {
@@ -70,4 +72,3 @@ function preencherTipos(categoria, tipoSelecionado) {
     });
   }
 }
-

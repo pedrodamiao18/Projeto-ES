@@ -6,82 +6,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerir Notificações</title>
   <link rel="stylesheet" href="https://unpkg.com/lucide@latest">
-  </link>
+  <link rel="stylesheet" href="/global.css">
   <link rel="stylesheet" href="gerir_notificacoes.css">
+  <script src="/toast.js" defer></script>
+
 </head>
 
 <body>
 
-  <aside class="sidebar">
-    <div class="nav-section">
-      <div class="nav-item" data-section="dashboard" title="Dashboard" onclick="window.location.href='/incidentes/incidentes.html'">
-        <i data-lucide="layout-dashboard"></i>
-      </div>
-      <div class="nav-item" data-section="incidentes" title="Incidentes"
-        onclick="window.location.href='/incidentes/registoIncidente.html'">
-        <i data-lucide="alert-triangle"></i>
-      </div>
-      <div class="nav-item" data-section="notificacoes" title="Notificações"
-        onclick="window.location.href='gerir_notificacoes.html'">
-        <i data-lucide="bell"></i>
-      </div>
-      <div class="nav-item" data-section="editar" title="Configurações"
-        onclick="window.location.href='/incidentes/editarIncidente.html'">
-        <i data-lucide="edit"></i>
-      </div>
-      <div class="nav-item" data-section="estatisticas" title="Estatísticas"
-        onclick="window.location.href='estatisticas.html'">
-        <i data-lucide="bar-chart-3"></i>
-      </div>
-    </div>
-
-    <div class="nav-section">
-      <div class="nav-item" data-section="perfil" title="Perfil" onclick="window.location.href='/perfil/perfil.html'">
-        <i data-lucide="user"></i>
-      </div>
-    </div>
-  </aside>
-
-
+  <aside class="sidebar"></aside>
 
   <main class="main-content">
     <header class="header">
       <h1>Gerir Notificações</h1>
     </header>
 
-    <div class="filtros">
-      <button class="ativo">Não lidas</button>
-      <button>Lidas</button>
+    <div class="filtros" role="tablist">
+      <button class="ativo" data-lida="false" type="button">Não lidas</button>
+      <button data-lida="true" type="button">Lidas</button>
     </div>
 
-    <section class="lista-notificacoes">
-      <article class="notificacao">
-        <p>Nova solicitação registrada.</p>
-        <button>Ver detalhes</button>
-      </article>
-
-      <article class="notificacao">
-        <p>Nova solicitação registrada.</p>
-        <button>Ver detalhes</button>
-      </article>
-
-      <article class="notificacao">
-        <p>Registro de resolução concluído.</p>
-        <button>Ver detalhes</button>
-      </article>
-
-      <article class="notificacao">
-        <p>Registro de resolução concluído.</p>
-        <button>Ver detalhes</button>
-      </article>
-    </section>
+    <section class="lista-notificacoes" id="listaNotificacoes"></section>
   </main>
+
+<div class="modal" id="detalhesModal" aria-hidden="true">
+  <div class="modal-content">
+    <button class="fechar-modal" id="fecharModal" aria-label="Fechar detalhes">&times;</button>
+    <div class="modal-body">
+      <h2 id="modalTitulo"></h2>
+      <p id="modalDescricao"></p>
+      <ul id="modalDetalhes"></ul>
+    </div>
+    <div class="modal-acoes">
+      <label for="modalPrioridade">Prioridade</label>
+      <select id="modalPrioridade">
+        <option value="">Selecionar</option>
+        <option>Baixa</option>
+        <option>Media</option>
+        <option>Alta</option>
+        <option>Urgente</option>
+      </select>
+      <button id="modalAceitar">Aceitar tarefa</button>
+    </div>
+  </div>
+</div>
+
+<script src="/sidebar.js"></script>
+<script src="gerir_notificacoes.js"></script>
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     lucide.createIcons();
   </script>
-  <script src="sidebar.js"></script>
 </body>
 
 </html>
